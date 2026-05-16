@@ -1,0 +1,1592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Rayutek Solutions – Claude AI Partner for Small Business</title>
+<meta name="theme-color" content="#ffffff"/>
+<meta name="color-scheme" content="light dark"/>
+<script>
+(function(){
+  var k='rayutek-theme',s=localStorage.getItem(k)||'system';
+  var d=s==='dark'||(s==='system'&&window.matchMedia('(prefers-color-scheme: dark)').matches);
+  document.documentElement.setAttribute('data-theme',d?'dark':'light');
+  document.documentElement.setAttribute('data-theme-pref',s);
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --blue:#1B9FD8;
+  --blue2:#0E7DB8;
+  --blue3:#0A5F8F;
+  --blue-lt:#E8F5FC;
+  --blue-mid:#C2E4F5;
+  --glow:rgba(27,159,216,0.15);
+  --gray-dk:#8B9CB0;
+  --text:#0F172A;
+  --text2:#334155;
+  --text3:#64748B;
+  --bg:#FFFFFF;
+  --bg2:#F8FAFC;
+  --bg3:#F1F5F9;
+  --border:#E2E8F0;
+  --border2:#CBD5E1;
+  --navy:#0A1628;
+  --navy2:#0F2040;
+  --r-sm:12px;
+  --r-md:20px;
+  --r-lg:28px;
+  --r-xl:40px;
+  --r-pill:999px;
+  --shadow-sm:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);
+  --shadow-md:0 4px 16px rgba(0,0,0,.08),0 2px 4px rgba(0,0,0,.04);
+  --shadow-lg:0 12px 40px rgba(0,0,0,.10),0 4px 12px rgba(0,0,0,.05);
+  --shadow-xl:0 24px 64px rgba(0,0,0,.12),0 8px 24px rgba(0,0,0,.06);
+  --font-head:'Outfit',sans-serif;
+  --font-body:'Inter',sans-serif;
+  --card:#FFFFFF;
+  --nav-surface:rgba(255,255,255,0.88);
+  --nav-surface-scroll:rgba(255,255,255,0.96);
+  --nav-border:rgba(226,232,240,0.8);
+  --logo-filter:none;
+  --hamburger-bg:var(--text);
+  --footer-bg:#0A1628;
+  --hero-glow-a:rgba(27,159,216,.07);
+  --hero-glow-b:rgba(27,159,216,.05);
+  --hero-bg-grad:linear-gradient(180deg,#fff 0%,#F5FAFD 100%);
+  --hero-blob-a:rgba(27,159,216,.10);
+  --hero-blob-b:rgba(27,159,216,.06);
+  --hero-dot:rgba(27,159,216,.25);
+  --diagram-bg:#F8FAFC;
+  --diagram-grid:#E2E8F0;
+  --diagram-card-1:#FFFFFF;
+  --diagram-card-2:#F8FAFC;
+  --diagram-card-border:#E2E8F0;
+  --diagram-title:#0F172A;
+  --diagram-muted:#64748B;
+  --diagram-label:#64748B;
+  --diagram-arrow-gray:#CBD5E1;
+  --diagram-shadow-opacity:0.08;
+  color-scheme:light;
+}
+
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-body);background:var(--bg);color:var(--text);
+  overflow-x:hidden;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeLegibility;
+}
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg2)}
+::-webkit-scrollbar-thumb{background:var(--blue);border-radius:99px}
+
+/* ─── NAV ─── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 6%;height:70px;
+  background:var(--nav-surface);
+  backdrop-filter:blur(20px) saturate(180%);
+  -webkit-backdrop-filter:blur(20px) saturate(180%);
+  border-bottom:1px solid var(--nav-border);
+  transition:box-shadow .3s,background .3s;
+}
+nav.scrolled{
+  background:var(--nav-surface-scroll);
+  box-shadow:0 1px 0 rgba(0,0,0,.06),0 4px 24px rgba(0,0,0,.06);
+}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo img{height:38px;width:auto;filter:var(--logo-filter)}
+.nav-links{display:flex;align-items:center;gap:8px;list-style:none}
+.nav-links a{
+  font-family:var(--font-head);font-size:.82rem;font-weight:600;
+  color:var(--text2);text-decoration:none;letter-spacing:.01em;
+  padding:7px 14px;border-radius:var(--r-pill);
+  transition:color .2s,background .2s;
+}
+.nav-links a:hover{color:var(--blue);background:var(--blue-lt)}
+.nav-cta{
+  padding:10px 24px;
+  background:var(--blue);color:#fff;
+  border-radius:var(--r-pill);font-family:var(--font-head);font-weight:700;
+  font-size:.82rem;letter-spacing:.01em;
+  text-decoration:none;
+  transition:background .2s,transform .15s,box-shadow .2s;
+  box-shadow:0 2px 12px rgba(27,159,216,.35);
+}
+.nav-cta:hover{background:var(--blue2);transform:translateY(-1px);box-shadow:0 4px 20px rgba(27,159,216,.45)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px}
+.hamburger span{display:block;width:20px;height:2px;background:var(--text);border-radius:2px;transition:.3s}
+
+/* ─── HERO ─── */
+.hero{
+  min-height:100vh;display:flex;align-items:center;
+  padding:90px 6% 80px;
+  position:relative;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 70% 80% at 100% 50%, var(--hero-glow-a) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 60% at 0% 100%, var(--hero-glow-b) 0%, transparent 60%),
+    var(--hero-bg-grad);
+}
+/* Decorative circles */
+.hero-blob1{
+  position:absolute;right:-80px;top:-80px;
+  width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle, var(--hero-blob-a) 0%, transparent 70%);
+  pointer-events:none;
+}
+.hero-blob2{
+  position:absolute;left:-100px;bottom:-100px;
+  width:400px;height:400px;border-radius:50%;
+  background:radial-gradient(circle, var(--hero-blob-b) 0%, transparent 70%);
+  pointer-events:none;
+}
+/* Dot grid (light) */
+.hero-dots{
+  position:absolute;inset:0;opacity:0.4;pointer-events:none;
+  background-image:radial-gradient(circle, var(--hero-dot) 1px, transparent 1px);
+  background-size:32px 32px;
+  mask-image:radial-gradient(ellipse 60% 80% at 80% 50%, black 0%, transparent 70%);
+  -webkit-mask-image:radial-gradient(ellipse 60% 80% at 80% 50%, black 0%, transparent 70%);
+}
+/* Line grid (dark — matches rayutek-dark.html) */
+.hero-grid{
+  display:none;position:absolute;inset:0;opacity:.04;pointer-events:none;
+  background-image:linear-gradient(rgba(41,171,226,.8) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(41,171,226,.8) 1px,transparent 1px);
+  background-size:60px 60px;
+}
+
+.hero-inner{
+  position:relative;z-index:1;
+  display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;
+  max-width:1200px;margin:0 auto;width:100%;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--blue-lt);border:1px solid var(--blue-mid);
+  border-radius:var(--r-pill);padding:6px 16px 6px 8px;margin-bottom:28px;
+}
+.hero-badge-pip{
+  width:28px;height:28px;border-radius:50%;background:var(--blue);
+  display:flex;align-items:center;justify-content:center;color:#fff;font-size:.75rem;
+  font-family:var(--font-head);font-weight:800;flex-shrink:0;
+}
+.hero-badge span{
+  font-family:var(--font-head);font-size:.76rem;font-weight:600;
+  color:var(--blue);letter-spacing:.02em;
+}
+.hero h1{
+  font-family:var(--font-head);font-weight:900;
+  font-size:clamp(2rem,4.5vw,3rem);
+  line-height:1.08;letter-spacing:-.03em;
+  color:var(--navy);margin-bottom:22px;
+  text-wrap:balance;
+}
+.hero h1 .h1-nowrap{white-space:nowrap}
+.hero h1 .hi{color:var(--blue);position:relative;display:inline-block}
+.hero h1 .hi::after{
+  content:'';position:absolute;bottom:4px;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,var(--blue),var(--blue-mid));
+  border-radius:99px;opacity:.5;
+}
+.hero-sub{
+  font-size:1.05rem;color:var(--text3);max-width:480px;
+  line-height:1.8;font-weight:400;margin-bottom:40px;
+}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:52px}
+.btn-p{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:14px 30px;background:var(--blue);color:#fff;
+  border-radius:var(--r-pill);font-family:var(--font-head);font-weight:700;
+  font-size:.9rem;letter-spacing:.01em;text-decoration:none;border:none;cursor:pointer;
+  transition:background .2s,transform .15s,box-shadow .25s;
+  box-shadow:0 4px 20px rgba(27,159,216,.4);
+}
+.btn-p:hover{background:var(--blue2);transform:translateY(-2px);box-shadow:0 8px 32px rgba(27,159,216,.45)}
+.btn-s{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:14px 28px;background:transparent;color:var(--text);
+  border:1.5px solid var(--border2);border-radius:var(--r-pill);
+  font-family:var(--font-head);font-weight:600;font-size:.9rem;
+  text-decoration:none;transition:.2s;
+}
+.btn-s:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-lt)}
+.btn-arrow{font-size:1rem;transition:transform .2s}
+.btn-p:hover .btn-arrow,.btn-s:hover .btn-arrow{transform:translateX(3px)}
+
+.hero-stats{
+  display:flex;gap:28px;padding-top:28px;
+  border-top:1px solid var(--border);
+}
+.hero-stat-n{
+  font-family:var(--font-head);font-size:1.9rem;font-weight:900;
+  color:var(--navy);letter-spacing:-.03em;line-height:1;
+}
+.hero-stat-n span{color:var(--blue)}
+.hero-stat-l{font-size:.75rem;color:var(--text3);margin-top:4px;font-weight:500;line-height:1.4}
+
+/* Hero right card */
+.hero-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r-xl);padding:40px;
+  box-shadow:var(--shadow-xl);
+  position:relative;overflow:hidden;
+}
+.hero-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--blue),#56C6F0,var(--blue2));
+}
+.hero-card-label{
+  display:flex;align-items:flex-start;gap:8px;margin-bottom:16px;
+  font-family:var(--font-head);font-size:.72rem;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--text3);
+  line-height:1.45;
+}
+.hero-card-label-dot{
+  width:8px;height:8px;border-radius:50%;background:var(--blue);
+  flex-shrink:0;margin-top:.35em;
+  animation:blink 2s infinite;
+}
+.hero-card-label-text{text-wrap:pretty}
+.hero-card-label-text em{
+  font-style:normal;color:var(--blue);font-weight:800;white-space:nowrap;
+}
+.hero-card-logo{
+  display:flex;justify-content:center;margin-bottom:32px;
+  padding:28px;background:var(--bg3);border-radius:var(--r-lg);
+}
+.hero-card-logo img{height:100px;width:auto}
+.hero-card-pill{
+  display:inline-flex;align-items:center;gap:6px;
+  background:linear-gradient(135deg,var(--blue-lt),#DDEFFE);
+  border:1px solid var(--blue-mid);border-radius:var(--r-pill);
+  padding:6px 14px;font-family:var(--font-head);font-size:.72rem;font-weight:700;
+  color:var(--blue);letter-spacing:.03em;text-transform:uppercase;margin-bottom:20px;
+}
+.hero-kpi-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.hero-kpi{
+  background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-md);
+  padding:16px 12px;text-align:center;
+}
+.hero-kpi-n{font-family:var(--font-head);font-size:1.5rem;font-weight:900;color:var(--blue);letter-spacing:-.03em}
+.hero-kpi-l{font-size:.7rem;color:var(--text3);font-weight:500;margin-top:2px;line-height:1.3}
+
+/* ─── SECTION BASE ─── */
+section{padding:96px 6%}
+.container{max-width:1200px;margin:0 auto}
+.chip{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--blue-lt);border:1px solid var(--blue-mid);
+  border-radius:var(--r-pill);padding:5px 14px;
+  font-family:var(--font-head);font-size:.72rem;font-weight:700;
+  color:var(--blue);letter-spacing:.05em;text-transform:uppercase;
+  margin-bottom:16px;
+}
+.chip-dot{width:5px;height:5px;border-radius:50%;background:var(--blue)}
+.sec-title{
+  font-family:var(--font-head);font-weight:900;
+  font-size:clamp(1.8rem,3vw,2.7rem);
+  letter-spacing:-.03em;line-height:1.12;
+  color:var(--navy);margin-bottom:14px;
+}
+.sec-sub{font-size:1rem;color:var(--text3);line-height:1.8;font-weight:400;max-width:560px}
+.sec-header{margin-bottom:56px}
+.sec-header.c{text-align:center}.sec-header.c .sec-sub{margin:0 auto}
+
+/* ─── TRUST BAND ─── */
+.trust{
+  padding:24px 6%;
+  background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+}
+.trust-inner{
+  max-width:1200px;margin:0 auto;
+  display:flex;align-items:center;gap:20px;flex-wrap:wrap;justify-content:center;
+}
+.trust-lbl{font-family:var(--font-head);font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);white-space:nowrap}
+.trust-sep{width:1px;height:20px;background:var(--border)}
+.trust-tags{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.trust-tag{
+  font-family:var(--font-head);font-size:.78rem;font-weight:600;color:var(--text2);
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r-pill);
+  padding:5px 14px;letter-spacing:.01em;
+}
+
+/* ─── SERVICES ─── */
+.services-bg{background:var(--bg)}
+.services-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+}
+.srv{
+  background:var(--card);border:1.5px solid var(--border);border-radius:var(--r-lg);
+  padding:36px 32px;
+  transition:border-color .25s,transform .25s,box-shadow .25s;
+  position:relative;overflow:hidden;
+}
+.srv::after{
+  content:'';position:absolute;inset:0;border-radius:inherit;opacity:0;
+  background:linear-gradient(135deg,rgba(27,159,216,.04),transparent);
+  transition:opacity .25s;
+}
+.srv:hover{border-color:var(--blue);transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.srv:hover::after{opacity:1}
+.srv-icon{
+  width:56px;height:56px;border-radius:var(--r-md);
+  background:var(--blue-lt);border:1px solid var(--blue-mid);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.5rem;margin-bottom:22px;
+}
+.srv h3{
+  font-family:var(--font-head);font-size:1.05rem;font-weight:800;
+  color:var(--navy);letter-spacing:-.02em;margin-bottom:10px;
+}
+.srv p{font-size:.88rem;color:var(--text3);line-height:1.75;font-weight:400}
+.srv-chip{
+  display:inline-block;margin-top:20px;
+  padding:4px 12px;border-radius:var(--r-pill);
+  font-family:var(--font-head);font-size:.68rem;font-weight:700;
+  letter-spacing:.04em;text-transform:uppercase;
+  background:var(--blue-lt);color:var(--blue);border:1px solid var(--blue-mid);
+}
+
+/* ─── PARTNER / CLAUDE SECTION ─── */
+.partner-bg{
+  background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%);
+  position:relative;overflow:hidden;
+}
+.partner-bg::before{
+  content:'';position:absolute;
+  width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(27,159,216,.15) 0%,transparent 70%);
+  top:-200px;right:-200px;pointer-events:none;
+}
+.partner-bg::after{
+  content:'';position:absolute;
+  width:400px;height:400px;border-radius:50%;
+  background:radial-gradient(circle,rgba(27,159,216,.08) 0%,transparent 70%);
+  bottom:-150px;left:-100px;pointer-events:none;
+}
+.partner-inner{
+  position:relative;z-index:1;
+  display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;
+  max-width:1200px;margin:0 auto;
+}
+.partner-chip{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(27,159,216,.15);border:1px solid rgba(27,159,216,.3);
+  border-radius:var(--r-pill);padding:6px 16px;margin-bottom:24px;
+  font-family:var(--font-head);font-size:.72rem;font-weight:700;
+  color:#7DD3F7;letter-spacing:.05em;text-transform:uppercase;
+}
+.partner-bg .sec-title{color:#fff}
+.partner-bg .sec-sub{color:rgba(255,255,255,.6)}
+.partner-list{list-style:none;margin-top:28px;display:flex;flex-direction:column;gap:0}
+.partner-list li{
+  display:flex;align-items:flex-start;gap:12px;
+  padding:14px 0;border-bottom:1px solid rgba(255,255,255,.07);
+  font-size:.9rem;color:rgba(255,255,255,.75);line-height:1.6;font-weight:400;
+}
+.partner-list li:last-child{border:none}
+.partner-check{
+  width:22px;height:22px;border-radius:50%;
+  background:rgba(27,159,216,.2);border:1px solid rgba(27,159,216,.4);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--blue);font-size:.7rem;flex-shrink:0;margin-top:1px;font-weight:700;
+}
+/* Terminal */
+.terminal{
+  background:#0D1117;border:1px solid rgba(255,255,255,.08);
+  border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-xl);
+}
+.terminal-bar{
+  background:#1A2030;padding:14px 18px;
+  display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(255,255,255,.06);
+}
+.tbar-dot{width:12px;height:12px;border-radius:50%}
+.tbar-title{
+  margin-left:auto;font-family:var(--font-head);font-size:.72rem;font-weight:600;
+  color:rgba(255,255,255,.35);letter-spacing:.04em;text-transform:uppercase;
+}
+.terminal-body{padding:24px 22px;font-family:'Fira Code','Courier New',monospace;font-size:.8rem;line-height:1.9}
+.t-line{display:flex;gap:10px}
+.t-prompt{color:#7DD3F7;font-weight:700;flex-shrink:0}
+.t-cmd{color:#E2E8F0}
+.t-out{color:#4ADE80}
+.t-comment{color:#566070;font-style:italic}
+.t-result{
+  margin-top:16px;background:#111C2E;border:1px solid rgba(27,159,216,.15);
+  border-radius:var(--r-sm);padding:14px 16px;
+}
+.t-result-label{font-family:var(--font-head);font-size:.68rem;font-weight:700;color:var(--blue);letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
+.t-result-text{font-size:.8rem;color:rgba(255,255,255,.55);font-family:var(--font-body);line-height:1.6}
+
+/* ─── HOW IT WORKS ─── */
+.how-bg{background:var(--bg2)}
+.steps{
+  display:grid;grid-template-columns:repeat(5,1fr);
+  gap:0;position:relative;max-width:1100px;margin:0 auto;
+}
+.steps::before{
+  content:'';position:absolute;
+  top:28px;left:10%;right:10%;height:2px;
+  background:linear-gradient(90deg,transparent,var(--blue-mid),var(--blue),var(--blue-mid),transparent);
+  border-radius:99px;
+}
+.step{padding:0 16px;text-align:center;position:relative}
+.step-n{
+  width:56px;height:56px;border-radius:50%;
+  background:var(--card);border:2px solid var(--blue-mid);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-head);font-size:1rem;font-weight:900;color:var(--blue);
+  margin:0 auto 20px;position:relative;z-index:1;
+  transition:background .25s,border-color .25s,transform .25s;
+  box-shadow:var(--shadow-sm);
+}
+.step:hover .step-n{
+  background:var(--blue);color:#fff;border-color:var(--blue);transform:scale(1.1);
+  box-shadow:0 4px 20px rgba(27,159,216,.4);
+}
+.step h3{font-family:var(--font-head);font-size:.9rem;font-weight:800;color:var(--navy);letter-spacing:-.01em;margin-bottom:8px}
+.step p{font-size:.8rem;color:var(--text3);line-height:1.65}
+
+/* ─── TESTIMONIALS ─── */
+.testi-bg{background:var(--bg)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.tcard{
+  background:var(--bg2);border:1.5px solid var(--border);border-radius:var(--r-lg);
+  padding:32px;transition:border-color .25s,transform .25s,box-shadow .25s;
+  display:flex;flex-direction:column;
+}
+.tcard:hover{border-color:var(--blue);transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.tcard-stars{font-size:.9rem;color:#F59E0B;letter-spacing:2px;margin-bottom:16px}
+.tcard-quote{
+  font-size:.9rem;color:var(--text2);line-height:1.8;
+  font-weight:400;font-style:italic;flex:1;margin-bottom:24px;
+  position:relative;padding-left:20px;
+}
+.tcard-quote::before{
+  content:'"';position:absolute;left:0;top:-4px;
+  font-family:var(--font-head);font-size:2rem;font-weight:900;
+  color:var(--blue);line-height:1;
+}
+.tcard-author{display:flex;align-items:center;gap:12px;padding-top:20px;border-top:1px solid var(--border)}
+.tcard-av{
+  width:42px;height:42px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,var(--blue2),var(--blue));
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-head);font-weight:800;font-size:.85rem;color:#fff;
+}
+.tcard-name{font-family:var(--font-head);font-size:.88rem;font-weight:700;color:var(--navy)}
+.tcard-role{font-size:.75rem;color:var(--text3);font-weight:400;margin-top:2px}
+
+/* ─── PRICING ─── */
+.pricing-bg{background:var(--bg2)}
+.pricing-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+  max-width:1060px;margin:0 auto;
+}
+.pcard{
+  background:var(--card);border:1.5px solid var(--border);border-radius:var(--r-xl);
+  padding:40px 36px;position:relative;transition:border-color .25s,transform .25s;
+}
+.pcard.featured{
+  border-color:var(--blue);
+  box-shadow:0 0 0 4px rgba(27,159,216,.08),var(--shadow-lg);
+  transform:scale(1.02);
+}
+.pcard.featured::before{
+  content:'Most Popular';
+  position:absolute;top:-14px;left:50%;transform:translateX(-50%);
+  background:var(--blue);color:#fff;padding:5px 18px;border-radius:var(--r-pill);
+  font-family:var(--font-head);font-size:.68rem;font-weight:800;
+  letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;
+  box-shadow:0 4px 12px rgba(27,159,216,.4);
+}
+.p-tier{font-family:var(--font-head);font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:12px}
+.p-price{font-family:var(--font-head);font-size:2.8rem;font-weight:900;color:var(--navy);letter-spacing:-.04em;line-height:1;margin-bottom:6px}
+.p-price sup{font-size:1.3rem;font-weight:600;vertical-align:super;letter-spacing:0}
+.p-price sub{font-size:.9rem;font-weight:500;color:var(--text3)}
+.p-setup{font-size:.8rem;color:var(--text3);font-weight:400}
+.p-div{border:none;border-top:1px solid var(--border);margin:24px 0}
+.p-feats{list-style:none;display:flex;flex-direction:column;gap:0}
+.p-feats li{
+  display:flex;align-items:flex-start;gap:10px;
+  padding:9px 0;border-bottom:1px solid var(--bg3);
+  font-size:.86rem;color:var(--text2);font-weight:400;
+}
+.p-feats li:last-child{border:none}
+.p-check{
+  width:18px;height:18px;border-radius:50%;background:var(--blue-lt);
+  border:1px solid var(--blue-mid);display:flex;align-items:center;justify-content:center;
+  color:var(--blue);font-size:.6rem;font-weight:700;flex-shrink:0;margin-top:2px;
+}
+.p-btn{
+  display:block;margin-top:28px;padding:14px 20px;text-align:center;
+  border-radius:var(--r-pill);font-family:var(--font-head);font-weight:700;
+  font-size:.88rem;letter-spacing:.01em;text-decoration:none;cursor:pointer;border:none;
+  transition:.2s;
+}
+.p-btn-o{background:transparent;border:1.5px solid var(--border2);color:var(--text)}
+.p-btn-o:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-lt)}
+.p-btn-f{background:var(--blue);color:#fff;box-shadow:0 4px 16px rgba(27,159,216,.35)}
+.p-btn-f:hover{background:var(--blue2);box-shadow:0 6px 24px rgba(27,159,216,.45);transform:translateY(-1px)}
+
+/* ─── CONTACT ─── */
+.contact-bg{background:var(--bg)}
+.contact-inner{
+  max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1.1fr;gap:72px;align-items:start;
+}
+.contact-info .sec-sub{margin-bottom:36px}
+.cdetail{
+  display:flex;align-items:center;gap:14px;margin-bottom:16px;
+  padding:16px;background:var(--bg2);border:1px solid var(--border);
+  border-radius:var(--r-md);
+}
+.cdetail-icon{
+  width:44px;height:44px;border-radius:var(--r-sm);
+  background:var(--blue-lt);border:1px solid var(--blue-mid);
+  display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;
+}
+.cdetail-label{font-family:var(--font-head);font-size:.75rem;font-weight:700;color:var(--blue);letter-spacing:.04em;text-transform:uppercase;margin-bottom:3px}
+.cdetail-val{font-size:.9rem;color:var(--text2);font-weight:500}
+.cform{
+  background:var(--card);border:1.5px solid var(--border);border-radius:var(--r-xl);
+  padding:44px;box-shadow:var(--shadow-lg);
+}
+.cform-title{font-family:var(--font-head);font-size:1.15rem;font-weight:800;color:var(--navy);letter-spacing:-.02em;margin-bottom:28px}
+.fg{margin-bottom:18px}
+.flabel{
+  display:block;font-family:var(--font-head);font-size:.72rem;font-weight:700;
+  letter-spacing:.05em;text-transform:uppercase;color:var(--text3);margin-bottom:7px;
+}
+.finput,.ftextarea,.fselect{
+  width:100%;padding:12px 16px;
+  background:var(--bg2);border:1.5px solid var(--border);border-radius:var(--r-md);
+  color:var(--text);font-family:var(--font-body);font-size:.9rem;font-weight:400;
+  transition:border-color .2s,box-shadow .2s;outline:none;
+  -webkit-font-smoothing:antialiased;
+}
+.finput:focus,.ftextarea:focus,.fselect:focus{
+  border-color:var(--blue);
+  box-shadow:0 0 0 3px rgba(27,159,216,.12);
+  background:var(--card);
+}
+.finput::placeholder,.ftextarea::placeholder{color:var(--text3);font-weight:400}
+.ftextarea{resize:vertical;min-height:118px;line-height:1.6}
+.fselect{appearance:none;cursor:pointer}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fsubmit{
+  width:100%;padding:15px;background:var(--blue);color:#fff;border:none;
+  border-radius:var(--r-pill);font-family:var(--font-head);font-weight:800;
+  font-size:.92rem;letter-spacing:.02em;cursor:pointer;
+  transition:background .2s,transform .15s,box-shadow .2s;
+  box-shadow:0 4px 20px rgba(27,159,216,.35);
+  margin-top:6px;
+}
+.fsubmit:hover{background:var(--blue2);transform:translateY(-2px);box-shadow:0 8px 32px rgba(27,159,216,.45)}
+.fsuccess{
+  display:none;text-align:center;padding:32px;
+  font-family:var(--font-head);font-weight:700;color:var(--blue);font-size:1rem;
+}
+
+/* ─── CTA BAND ─── */
+.cta-band{
+  background:linear-gradient(135deg,var(--blue),var(--blue3));
+  padding:72px 6%;text-align:center;position:relative;overflow:hidden;
+}
+.cta-band::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 100% at 50% 50%,rgba(255,255,255,.05) 0%,transparent 70%);
+}
+.cta-band h2{
+  font-family:var(--font-head);font-size:clamp(1.8rem,3vw,2.8rem);
+  font-weight:900;color:#fff;letter-spacing:-.03em;margin-bottom:12px;position:relative;
+}
+.cta-band p{font-size:1rem;color:rgba(255,255,255,.75);margin-bottom:32px;position:relative}
+.cta-band .btn-p{background:#fff;color:var(--blue);box-shadow:0 4px 20px rgba(0,0,0,.15)}
+.cta-band .btn-p:hover{background:var(--bg2);box-shadow:0 8px 32px rgba(0,0,0,.2)}
+
+/* ─── FOOTER ─── */
+footer{
+  background:var(--navy);color:rgba(255,255,255,.7);
+  padding:64px 6% 32px;
+}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-top{
+  display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px;
+}
+.footer-brand img{height:42px;width:auto;margin-bottom:14px;filter:var(--logo-filter)}
+.footer-brand p{font-size:.85rem;color:rgba(255,255,255,.45);line-height:1.7;max-width:240px;margin-bottom:20px}
+.footer-claude-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(27,159,216,.15);border:1px solid rgba(27,159,216,.25);
+  border-radius:var(--r-pill);padding:6px 14px;
+  font-family:var(--font-head);font-size:.7rem;font-weight:700;
+  color:#7DD3F7;letter-spacing:.04em;text-transform:uppercase;
+}
+.footer-col-title{
+  font-family:var(--font-head);font-size:.72rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);
+  margin-bottom:16px;
+}
+.footer-links{list-style:none}
+.footer-links li{margin-bottom:10px}
+.footer-links a{
+  font-size:.85rem;color:rgba(255,255,255,.5);text-decoration:none;
+  transition:color .2s;font-weight:400;
+}
+.footer-links a:hover{color:#7DD3F7}
+.footer-bottom{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-top:28px;border-top:1px solid rgba(255,255,255,.07);
+  font-size:.78rem;color:rgba(255,255,255,.3);flex-wrap:wrap;gap:12px;
+}
+.footer-bottom a{color:rgba(255,255,255,.3);text-decoration:none}
+.footer-bottom a:hover{color:#7DD3F7}
+
+
+/* ─── THEME: DARK ─── */
+[data-theme="dark"]{
+  color-scheme:dark;
+  --blue:#29ABE2;
+  --blue2:#1a8bbf;
+  --blue3:#1578a8;
+  --blue-lt:rgba(41,171,226,.12);
+  --blue-mid:rgba(41,171,226,.22);
+  --glow:rgba(41,171,226,.18);
+  --text:#F8FAFC;
+  --text2:#CBD5E1;
+  --text3:#94A3B8;
+  --bg:#111518;
+  --bg2:#171c21;
+  --bg3:#1e252c;
+  --border:rgba(41,171,226,.14);
+  --border2:rgba(255,255,255,.08);
+  --navy:#FFFFFF;
+  --navy2:#E2E8F0;
+  --card:#1a2128;
+  --nav-surface:rgba(17,21,24,.9);
+  --nav-surface-scroll:rgba(17,21,24,.96);
+  --nav-border:rgba(41,171,226,.14);
+  --logo-filter:brightness(0) invert(1);
+  --hamburger-bg:#fff;
+  --footer-bg:#0d1117;
+  --hero-glow-a:rgba(41,171,226,.1);
+  --hero-glow-b:rgba(41,171,226,.06);
+  --hero-bg-grad:linear-gradient(135deg,#111518 0%,#13191f 50%,#111518 100%);
+  --hero-blob-a:rgba(41,171,226,.12);
+  --hero-blob-b:rgba(41,171,226,.08);
+  --hero-dot:rgba(41,171,226,.2);
+  --diagram-bg:#121820;
+  --diagram-grid:#2a3544;
+  --diagram-card-1:#1c2733;
+  --diagram-card-2:#161e28;
+  --diagram-card-border:rgba(41,171,226,0.18);
+  --diagram-title:#E2E8F0;
+  --diagram-muted:#94A3B8;
+  --diagram-label:#8fa3b8;
+  --diagram-arrow-gray:#4a5d73;
+  --diagram-shadow-opacity:0.32;
+  --shadow-sm:0 1px 3px rgba(0,0,0,.35);
+  --shadow-md:0 8px 28px rgba(0,0,0,.45);
+  --shadow-lg:0 16px 48px rgba(0,0,0,.5);
+  --shadow-xl:0 24px 64px rgba(0,0,0,.55);
+}
+[data-theme="dark"] nav.scrolled{box-shadow:0 4px 32px rgba(0,0,0,.45)}
+[data-theme="dark"] .hero-bg{
+  background:
+    radial-gradient(ellipse 80% 60% at 60% 40%, rgba(41,171,226,.08) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 10% 80%, rgba(41,171,226,.05) 0%, transparent 60%),
+    linear-gradient(135deg,#111518 0%,#13191f 50%,#111518 100%);
+}
+[data-theme="dark"] .hero-blob1,
+[data-theme="dark"] .hero-blob2,
+[data-theme="dark"] .hero-dots{display:none}
+[data-theme="dark"] .hero-grid{display:block}
+[data-theme="dark"] .partner-bg{
+  background:linear-gradient(135deg,#0d1117 0%,#131b2e 100%);
+}
+[data-theme="dark"] footer{background:var(--footer-bg)}
+[data-theme="dark"] .hero-card{
+  border-color:rgba(41,171,226,0.2);
+  box-shadow:0 24px 64px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.04);
+}
+[data-theme="dark"] .hero-diagram{
+  border-radius:12px;
+  background:var(--diagram-bg);
+}
+
+/* ─── THEME SWITCHER (Supabase-style) ─── */
+.theme-switcher{
+  position:fixed;bottom:24px;right:24px;z-index:300;
+  display:flex;align-items:center;gap:2px;
+  padding:4px;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--r-pill);
+  box-shadow:var(--shadow-lg);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+}
+.theme-switcher button{
+  display:flex;align-items:center;justify-content:center;
+  width:36px;height:36px;padding:0;border:none;border-radius:var(--r-pill);
+  background:transparent;color:var(--text3);cursor:pointer;
+  transition:background .2s,color .2s,box-shadow .2s;
+}
+.theme-switcher button:hover{color:var(--text);background:var(--bg2)}
+.theme-switcher button[aria-pressed="true"]{
+  background:var(--blue-lt);color:var(--blue);
+  box-shadow:inset 0 0 0 1px var(--blue-mid);
+}
+.theme-switcher button svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+.theme-switcher button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+@media(max-width:640px){
+  .theme-switcher{bottom:16px;right:16px}
+  .theme-switcher button{width:34px;height:34px}
+}
+
+/* ─── REVEAL ─── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
+.reveal.up{opacity:1;transform:none}
+
+/* ─── MOBILE ─── */
+@media(max-width:1024px){
+  .hero-inner{grid-template-columns:1fr;gap:48px}
+  .partner-inner,.contact-inner{grid-template-columns:1fr;gap:40px}
+  .services-grid,.testi-grid,.pricing-grid{grid-template-columns:repeat(2,1fr)}
+  .steps{grid-template-columns:repeat(3,1fr)}
+  .steps::before{display:none}
+  .footer-top{grid-template-columns:1fr 1fr;gap:32px}
+}
+@media(max-width:640px){
+  .hero h1 .h1-nowrap{white-space:normal}
+  .hero-card-label-text em{white-space:normal}
+  .nav-links,.nav-cta{display:none}
+  .hamburger{display:flex}
+  .hero-inner,.services-grid,.testi-grid,.pricing-grid{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr 1fr}
+  .hero-stats{flex-direction:column;gap:16px}
+  .frow{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;text-align:center}
+  .pcard.featured{transform:none}
+  .mob-menu{
+    display:flex!important;flex-direction:column;
+    position:fixed;top:70px;left:0;right:0;bottom:0;
+    background:var(--bg);z-index:199;padding:28px 6%;gap:6px;overflow-y:auto;
+  }
+  .mob-menu a{
+    font-family:var(--font-head);font-size:1rem;font-weight:600;color:var(--text);
+    text-decoration:none;padding:14px 16px;border-radius:var(--r-md);
+    border-bottom:1px solid var(--border);transition:color .2s,background .2s;
+  }
+  .mob-menu a:hover{color:var(--blue);background:var(--blue-lt)}
+  .mob-menu .nav-cta{
+    margin-top:12px;display:block;text-align:center;
+    padding:14px;border-radius:var(--r-pill);background:var(--blue);color:#fff;
+    font-weight:700;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <img src="rayutek-logo.png" alt="Rayutek Solutions"/>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#claude">Claude Partner</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#testimonials">Clients</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Get Started →</a>
+  <div class="hamburger" id="ham" onclick="toggleMob()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mob-menu" id="mobMenu" style="display:none">
+  <a href="#services" onclick="toggleMob()">Services</a>
+  <a href="#claude" onclick="toggleMob()">Claude Partner</a>
+  <a href="#process" onclick="toggleMob()">Process</a>
+  <a href="#testimonials" onclick="toggleMob()">Clients</a>
+  <a href="#pricing" onclick="toggleMob()">Pricing</a>
+  <a href="#contact" class="nav-cta" onclick="toggleMob()">Get Started →</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="hero-blob1" aria-hidden="true"></div>
+  <div class="hero-blob2" aria-hidden="true"></div>
+  <div class="hero-dots" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <div class="hero-badge">
+        <div class="hero-badge-pip">✦</div>
+        <span>Official Anthropic Claude Partner</span>
+      </div>
+      <h1>AI That <span class="hi">Actually Works</span> <span class="h1-nowrap">for Small Business</span></h1>
+      <p class="hero-sub">Rayutek Solutions builds custom Claude-powered automations, agents, and AI tools — so your team works smarter, ships faster, and scales without hiring.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-p">Book Free Consult <span class="btn-arrow">→</span></a>
+        <a href="#services" class="btn-s">See What We Build <span class="btn-arrow">→</span></a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-n">50<span>+</span></div>
+          <div class="hero-stat-l">Businesses<br/>transformed</div>
+        </div>
+        <div>
+          <div class="hero-stat-n">3<span>×</span></div>
+          <div class="hero-stat-l">Avg. productivity<br/>increase</div>
+        </div>
+        <div>
+          <div class="hero-stat-n">48<span>h</span></div>
+          <div class="hero-stat-l">To first live<br/>deployment</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-card">
+        <!-- Claude Process Diagram for Small Business -->
+        <div class="hero-card-label">
+          <span class="hero-card-label-dot" aria-hidden="true"></span>
+          <span class="hero-card-label-text">Your Business, Supercharged by <em>Rayutek + Claude</em></span>
+        </div>
+        <svg class="hero-diagram" viewBox="0 0 420 460" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
+          <defs>
+            <linearGradient id="gBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#1B9FD8"/>
+              <stop offset="100%" stop-color="#0A5F8F"/>
+            </linearGradient>
+            <linearGradient id="gGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#22C55E"/>
+              <stop offset="100%" stop-color="#16A34A"/>
+            </linearGradient>
+            <linearGradient id="gOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#F59E0B"/>
+              <stop offset="100%" stop-color="#D97706"/>
+            </linearGradient>
+            <linearGradient id="gPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#8B5CF6"/>
+              <stop offset="100%" stop-color="#7C3AED"/>
+            </linearGradient>
+            <linearGradient id="gCard" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="var(--diagram-card-1)"/>
+              <stop offset="100%" stop-color="var(--diagram-card-2)"/>
+            </linearGradient>
+            <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="130%">
+              <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#0F172A" flood-opacity="var(--diagram-shadow-opacity)"/>
+            </filter>
+            <filter id="glowBlue" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="4" result="blur"/>
+              <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+            </filter>
+            <marker id="arrowBlue" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="#1B9FD8"/>
+            </marker>
+            <marker id="arrowGray" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="var(--diagram-arrow-gray)"/>
+            </marker>
+          </defs>
+
+          <!-- ── BACKGROUND GRID ── -->
+          <rect width="420" height="460" fill="var(--diagram-bg)" rx="16"/>
+          <line x1="0" y1="115" x2="420" y2="115" stroke="var(--diagram-grid)" stroke-width="1"/>
+          <line x1="0" y1="230" x2="420" y2="230" stroke="var(--diagram-grid)" stroke-width="1"/>
+          <line x1="0" y1="345" x2="420" y2="345" stroke="var(--diagram-grid)" stroke-width="1"/>
+          <line x1="140" y1="0" x2="140" y2="460" stroke="var(--diagram-grid)" stroke-width="1"/>
+          <line x1="280" y1="0" x2="280" y2="460" stroke="var(--diagram-grid)" stroke-width="1"/>
+
+          <!-- ── CLAUDE HUB (center) ── -->
+          <!-- Glow ring -->
+          <circle cx="210" cy="230" r="52" fill="rgba(27,159,216,0.08)" />
+          <circle cx="210" cy="230" r="42" fill="rgba(27,159,216,0.12)" />
+          <!-- Main hub circle -->
+          <circle cx="210" cy="230" r="34" fill="url(#gBlue)" filter="url(#cardShadow)"/>
+          <!-- Claude logo text -->
+          <text x="210" y="223" text-anchor="middle" font-family="'Outfit',sans-serif" font-size="9" font-weight="700" fill="rgba(255,255,255,0.75)" letter-spacing="1">CLAUDE</text>
+          <text x="210" y="237" text-anchor="middle" font-family="'Outfit',sans-serif" font-size="11" font-weight="900" fill="#FFFFFF">AI Core</text>
+          <!-- Rotating dashes ring -->
+          <circle cx="210" cy="230" r="40" fill="none" stroke="#1B9FD8" stroke-width="1.5" stroke-dasharray="4 6" opacity="0.5">
+            <animateTransform attributeName="transform" type="rotate" from="0 210 230" to="360 210 230" dur="12s" repeatCount="indefinite"/>
+          </circle>
+
+          <!-- ══ NODE 1: Business Inputs (top-left) ══ -->
+          <rect x="14" y="22" width="108" height="76" rx="12" fill="url(#gCard)" filter="url(#cardShadow)" stroke="var(--diagram-card-border)" stroke-width="1"/>
+          <rect x="14" y="22" width="108" height="4" rx="2" fill="url(#gBlue)"/>
+          <!-- Icon bg -->
+          <rect x="24" y="35" width="28" height="28" rx="8" fill="rgba(27,159,216,0.1)"/>
+          <!-- Email icon -->
+          <rect x="28" y="41" width="20" height="14" rx="2" fill="none" stroke="#1B9FD8" stroke-width="1.5"/>
+          <polyline points="28,41 38,50 48,41" fill="none" stroke="#1B9FD8" stroke-width="1.5" stroke-linejoin="round"/>
+          <text x="58" y="47" font-family="'Outfit',sans-serif" font-size="9.5" font-weight="800" fill="var(--diagram-title)">Business</text>
+          <text x="58" y="59" font-family="'Outfit',sans-serif" font-size="9.5" font-weight="800" fill="var(--diagram-title)">Inputs</text>
+          <text x="24" y="81" font-family="'Inter',sans-serif" font-size="7.5" fill="var(--diagram-muted)">Emails · Docs · Data</text>
+          <text x="24" y="91" font-family="'Inter',sans-serif" font-size="7.5" fill="var(--diagram-muted)">CRM · Spreadsheets</text>
+
+          <!-- ══ NODE 2: Automation (top-right) ══ -->
+          <rect x="298" y="22" width="108" height="76" rx="12" fill="url(#gCard)" filter="url(#cardShadow)" stroke="var(--diagram-card-border)" stroke-width="1"/>
+          <rect x="298" y="22" width="108" height="4" rx="2" fill="url(#gGreen)"/>
+          <rect x="308" y="35" width="28" height="28" rx="8" fill="rgba(34,197,94,0.1)"/>
+          <!-- Gear icon -->
+          <circle cx="322" cy="49" r="7" fill="none" stroke="#22C55E" stroke-width="1.5"/>
+          <circle cx="322" cy="49" r="3" fill="#22C55E"/>
+          <line x1="322" y1="40" x2="322" y2="43" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="322" y1="55" x2="322" y2="58" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="313" y1="49" x2="316" y2="49" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="328" y1="49" x2="331" y2="49" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round"/>
+          <text x="342" y="47" font-family="'Outfit',sans-serif" font-size="9.5" font-weight="800" fill="var(--diagram-title)">Smart</text>
+          <text x="342" y="59" font-family="'Outfit',sans-serif" font-size="9.5" font-weight="800" fill="var(--diagram-title)">Automation</text>
+          <text x="308" y="81" font-family="'Inter',sans-serif" font-size="7.5" fill="var(--diagram-muted)">Workflows · Tasks</text>
+          <text x="308" y="91" font-family="'Inter',sans-serif" font-size="7.5" fill="var(--diagram-muted)">Scheduling · Alerts</text>
+
+          <!-- ══ NODE 3: Customer Support (bottom-left) ══ -->
+          <rect x="14" y="362" width="108" height="76" rx="12" fill="url(#gCard)" filter="url(#cardShadow)" stroke="var(--diagram-card-border)" stroke-width="1"/>
+          <rect x="14" y="362" width="108" height="4" rx="2" fill="url(#gOrange)"/>
+          <rect x="24" y="375" width="28" height="28" rx="8" fill="rgba(245,158,11,0.1)"/>
+          <!-- Chat icon -->
+          <rect x="27" y="378" width="22" height="16" rx="4" fill="none" stroke="#F59E0B" stroke-width="1.5"/>
+          <line x1="31" y1="384" x2="45" y2="384" stroke="#F59E0B" stroke-width="1.3" stroke-linecap="round"/>
+          <line x1="31" y1="389" x2="41" y2="389" stroke="#F59E0B" stroke-width="1.3" stroke-linecap="round"/>
+          <text x="58" y="386" font-family="'Outfit',sans-serif" font-size="9.5" font-weight="800" fill="var(--diagram-title)">Customer</text>
+          <text x="58" y="398" font-family="'Outfit',sans-serif" font-size="9.5" font-weight="800" fill="var(--diagram-title)">Support AI</text>
+          <text x="24" y="421" font-family="'Inter',sans-serif" font-size="7.5" fill="var(--diagram-muted)">Chat · Email · Triage</text>
+          <text x="24" y="431" font-family="'Inter',sans-serif" font-size="7.5" fill="var(--diagram-muted)">24/7 Responses</text>
+
+          <!-- ══ NODE 4: Reports & Insights (bottom-right) ══ -->
+          <rect x="298" y="362" width="108" height="76" rx="12" fill="url(#gCard)" filter="url(#cardShadow)" stroke="var(--diagram-card-border)" stroke-width="1"/>
+          <rect x="298" y="362" width="108" height="4" rx="2" fill="url(#gPurple)"/>
+          <rect x="308" y="375" width="28" height="28" rx="8" fill="rgba(139,92,246,0.1)"/>
+          <!-- Bar chart icon -->
+          <rect x="312" y="392" width="5" height="8" rx="1.5" fill="#8B5CF6"/>
+          <rect x="320" y="385" width="5" height="15" rx="1.5" fill="#8B5CF6"/>
+          <rect x="328" y="389" width="5" height="11" rx="1.5" fill="#8B5CF6"/>
+          <text x="342" y="386" font-family="'Outfit',sans-serif" font-size="9.5" font-weight="800" fill="var(--diagram-title)">Reports &amp;</text>
+          <text x="342" y="398" font-family="'Outfit',sans-serif" font-size="9.5" font-weight="800" fill="var(--diagram-title)">Insights</text>
+          <text x="308" y="421" font-family="'Inter',sans-serif" font-size="7.5" fill="var(--diagram-muted)">Analytics · Forecasts</text>
+          <text x="308" y="431" font-family="'Inter',sans-serif" font-size="7.5" fill="var(--diagram-muted)">Plain-English Summaries</text>
+
+          <!-- ══ NODE 5: Left side - Documents ══ -->
+          <rect x="14" y="192" width="100" height="76" rx="12" fill="url(#gCard)" filter="url(#cardShadow)" stroke="var(--diagram-card-border)" stroke-width="1"/>
+          <rect x="14" y="192" width="100" height="4" rx="2" fill="#0EA5E9"/>
+          <rect x="22" y="205" width="26" height="26" rx="7" fill="rgba(14,165,233,0.1)"/>
+          <!-- Doc icon -->
+          <rect x="26" y="208" width="14" height="18" rx="2" fill="none" stroke="#0EA5E9" stroke-width="1.5"/>
+          <line x1="29" y1="213" x2="37" y2="213" stroke="#0EA5E9" stroke-width="1.2" stroke-linecap="round"/>
+          <line x1="29" y1="217" x2="37" y2="217" stroke="#0EA5E9" stroke-width="1.2" stroke-linecap="round"/>
+          <line x1="29" y1="221" x2="34" y2="221" stroke="#0EA5E9" stroke-width="1.2" stroke-linecap="round"/>
+          <text x="53" y="214" font-family="'Outfit',sans-serif" font-size="9" font-weight="800" fill="var(--diagram-title)">Document</text>
+          <text x="53" y="225" font-family="'Outfit',sans-serif" font-size="9" font-weight="800" fill="var(--diagram-title)">Processing</text>
+          <text x="22" y="247" font-family="'Inter',sans-serif" font-size="7.2" fill="var(--diagram-muted)">Contracts · Proposals</text>
+          <text x="22" y="257" font-family="'Inter',sans-serif" font-size="7.2" fill="var(--diagram-muted)">Invoices · Summaries</text>
+
+          <!-- ══ NODE 6: Right side - Integrations ══ -->
+          <rect x="306" y="192" width="100" height="76" rx="12" fill="url(#gCard)" filter="url(#cardShadow)" stroke="var(--diagram-card-border)" stroke-width="1"/>
+          <rect x="306" y="192" width="100" height="4" rx="2" fill="#EC4899"/>
+          <rect x="314" y="205" width="26" height="26" rx="7" fill="rgba(236,72,153,0.1)"/>
+          <!-- Network icon -->
+          <circle cx="327" cy="213" r="3.5" fill="none" stroke="#EC4899" stroke-width="1.5"/>
+          <circle cx="320" cy="224" r="3" fill="none" stroke="#EC4899" stroke-width="1.5"/>
+          <circle cx="334" cy="224" r="3" fill="none" stroke="#EC4899" stroke-width="1.5"/>
+          <line x1="327" y1="216.5" x2="320" y2="221" stroke="#EC4899" stroke-width="1.2"/>
+          <line x1="327" y1="216.5" x2="334" y2="221" stroke="#EC4899" stroke-width="1.2"/>
+          <text x="346" y="214" font-family="'Outfit',sans-serif" font-size="9" font-weight="800" fill="var(--diagram-title)">Tool</text>
+          <text x="346" y="225" font-family="'Outfit',sans-serif" font-size="9" font-weight="800" fill="var(--diagram-title)">Integrations</text>
+          <text x="314" y="247" font-family="'Inter',sans-serif" font-size="7.2" fill="var(--diagram-muted)">Slack · HubSpot · Notion</text>
+          <text x="314" y="257" font-family="'Inter',sans-serif" font-size="7.2" fill="var(--diagram-muted)">Zapier · QuickBooks</text>
+
+          <!-- ══ CONNECTING LINES with arrows ══ -->
+          <!-- Top-left to hub -->
+          <line x1="122" y1="60" x2="174" y2="204" stroke="#1B9FD8" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowBlue)" opacity="0.6"/>
+          <!-- Top-right to hub -->
+          <line x1="298" y1="60" x2="246" y2="204" stroke="#22C55E" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowBlue)" opacity="0.6"/>
+          <!-- Hub to bottom-left -->
+          <line x1="174" y1="256" x2="122" y2="400" stroke="#F59E0B" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowBlue)" opacity="0.6"/>
+          <!-- Hub to bottom-right -->
+          <line x1="246" y1="256" x2="298" y2="400" stroke="#8B5CF6" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowBlue)" opacity="0.6"/>
+          <!-- Hub to left (doc processing) -->
+          <line x1="176" y1="230" x2="114" y2="230" stroke="#0EA5E9" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowBlue)" opacity="0.6"/>
+          <!-- Hub to right (integrations) -->
+          <line x1="244" y1="230" x2="306" y2="230" stroke="#EC4899" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowBlue)" opacity="0.6"/>
+
+          <!-- ══ ANIMATED DATA PACKETS ══ -->
+          <!-- Packet 1: top-left to hub -->
+          <circle r="4" fill="#1B9FD8" opacity="0.85">
+            <animateMotion dur="3s" repeatCount="indefinite" begin="0s">
+              <mpath href="#path1"/>
+            </animateMotion>
+          </circle>
+          <!-- Packet 2: hub to bottom-right -->
+          <circle r="4" fill="#8B5CF6" opacity="0.85">
+            <animateMotion dur="3s" repeatCount="indefinite" begin="1s">
+              <mpath href="#path2"/>
+            </animateMotion>
+          </circle>
+          <!-- Packet 3: hub to left -->
+          <circle r="3.5" fill="#0EA5E9" opacity="0.85">
+            <animateMotion dur="2.5s" repeatCount="indefinite" begin="0.5s">
+              <mpath href="#path3"/>
+            </animateMotion>
+          </circle>
+          <!-- Packet 4: top-right to hub -->
+          <circle r="4" fill="#22C55E" opacity="0.85">
+            <animateMotion dur="3.5s" repeatCount="indefinite" begin="1.5s">
+              <mpath href="#path4"/>
+            </animateMotion>
+          </circle>
+
+          <!-- Motion paths (hidden) -->
+          <defs>
+            <path id="path1" d="M122,60 L174,204" fill="none"/>
+            <path id="path2" d="M246,256 L298,400" fill="none"/>
+            <path id="path3" d="M244,230 L306,230" fill="none"/>
+            <path id="path4" d="M298,60 L246,204" fill="none"/>
+          </defs>
+
+          <!-- ══ CENTER LABEL (beneath hub) ══ -->
+          <text x="210" y="278" text-anchor="middle" font-family="'Outfit',sans-serif" font-size="8" font-weight="600" fill="var(--diagram-muted)" letter-spacing="0.5">Powered by Anthropic</text>
+
+        </svg>
+
+      </div>
+  </div>
+</section>
+
+<!-- TRUST BAND -->
+<div class="trust">
+  <div class="trust-inner">
+    <span class="trust-lbl">Trusted across industries</span>
+    <div class="trust-sep"></div>
+    <div class="trust-tags">
+      <span class="trust-tag">🏥 Healthcare</span>
+      <span class="trust-tag">⚖️ Legal</span>
+      <span class="trust-tag">🛒 E-Commerce</span>
+      <span class="trust-tag">🏠 Real Estate</span>
+      <span class="trust-tag">🏭 Manufacturing</span>
+      <span class="trust-tag">🚚 Logistics</span>
+      <span class="trust-tag">💰 Finance</span>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services-bg" id="services">
+  <div class="container">
+    <div class="sec-header reveal">
+      <div class="chip"><span class="chip-dot"></span>What We Build</div>
+      <h2 class="sec-title">AI Solutions Built for<br/>the Real World</h2>
+      <p class="sec-sub">We don't sell demos — we deploy working Claude-powered automations tailored to exactly how your business operates.</p>
+    </div>
+    <div class="services-grid">
+      <div class="srv reveal">
+        <div class="srv-icon">🤖</div>
+        <h3>Custom Claude Agents</h3>
+        <p>Intelligent AI assistants trained on your business data, policies, and workflows. Answer questions, process requests, and take action — 24/7.</p>
+        <span class="srv-chip">Claude-Powered</span>
+      </div>
+      <div class="srv reveal">
+        <div class="srv-icon">⚡</div>
+        <h3>Workflow Automation</h3>
+        <p>Eliminate repetitive tasks that drain your team. We connect Claude to your CRM, email, inventory, and scheduling tools and build automations that just run.</p>
+        <span class="srv-chip">Integration-First</span>
+      </div>
+      <div class="srv reveal">
+        <div class="srv-icon">📊</div>
+        <h3>AI Analytics & Reporting</h3>
+        <p>Ask your data questions in plain English. Claude transforms spreadsheets, sales data, and ops metrics into clear summaries and action items.</p>
+        <span class="srv-chip">Insight Engine</span>
+      </div>
+      <div class="srv reveal">
+        <div class="srv-icon">💬</div>
+        <h3>Customer Experience AI</h3>
+        <p>Deploy smart chatbots, email responders, and support triage systems that handle inquiries with your brand's voice — escalating only when needed.</p>
+        <span class="srv-chip">CX Upgrade</span>
+      </div>
+      <div class="srv reveal">
+        <div class="srv-icon">📝</div>
+        <h3>Document & Content AI</h3>
+        <p>Automate contracts, proposals, invoices, and internal docs. Claude reads, summarizes, drafts, and reviews at a speed no human team can match.</p>
+        <span class="srv-chip">Docs Automation</span>
+      </div>
+      <div class="srv reveal">
+        <div class="srv-icon">🔒</div>
+        <h3>Secure Private Deployments</h3>
+        <p>Enterprise-grade AI for sensitive industries. Privacy controls, data retention policies, and role-based access so compliance is never a concern.</p>
+        <span class="srv-chip">Enterprise-Ready</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLAUDE PARTNER -->
+<section class="partner-bg" id="claude">
+  <div class="partner-inner">
+    <div class="reveal">
+      <div class="partner-chip">✦ Official Anthropic Claude Partner</div>
+      <div class="chip" style="background:rgba(27,159,216,.1);border-color:rgba(27,159,216,.2)">Why Claude</div>
+      <h2 class="sec-title" style="color:#fff;margin-top:10px">The Most Capable AI —<br/>Implemented by Experts</h2>
+      <p class="sec-sub">Claude by Anthropic is the most nuanced, context-aware AI available. As a certified partner, we deliver integrations no generic AI agency can match.</p>
+      <ul class="partner-list">
+        <li><div class="partner-check">✓</div>Direct API access and priority model updates from Anthropic</li>
+        <li><div class="partner-check">✓</div>Constitutional AI ensures safe, on-brand outputs every time</li>
+        <li><div class="partner-check">✓</div>200K+ token context — handles massive documents and datasets</li>
+        <li><div class="partner-check">✓</div>Certified implementation across dozens of industries</li>
+        <li><div class="partner-check">✓</div>Ongoing model improvements automatically benefit your deployment</li>
+      </ul>
+    </div>
+    <div class="reveal">
+      <div class="terminal">
+        <div class="terminal-bar">
+          <div class="tbar-dot" style="background:#FF5F57"></div>
+          <div class="tbar-dot" style="background:#FEBC2E"></div>
+          <div class="tbar-dot" style="background:#28C840"></div>
+          <div class="tbar-title">Rayutek · Claude Live Integration</div>
+        </div>
+        <div class="terminal-body">
+          <div class="t-line"><span class="t-prompt">→</span><span class="t-cmd">Analyzing this month's inventory report...</span></div>
+          <div class="t-line"><span class="t-prompt">→</span><span class="t-out">Found 14 low-stock alerts across 3 warehouses</span></div>
+          <div class="t-line"><span class="t-prompt">→</span><span class="t-out">Generating reorder recommendations...</span></div>
+          <div class="t-line"><span class="t-comment"># Drafting supplier email for SKU-204, SKU-891...</span></div>
+          <div class="t-line"><span class="t-prompt">→</span><span class="t-out">3 emails drafted, awaiting your approval ✓</span></div>
+          <div class="t-line"><span class="t-comment"># Projected stockout prevented: $42,000 saved</span></div>
+          <div class="t-result">
+            <div class="t-result-label">Result</div>
+            <div class="t-result-text">3-person ops team eliminated 12 hrs/week of manual inventory work. Deployed in under 48 hours.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-bg" id="process">
+  <div class="container">
+    <div class="sec-header c reveal">
+      <div class="chip"><span class="chip-dot"></span>Our Process</div>
+      <h2 class="sec-title">From Discovery to Deployment<br/>in Days, Not Months</h2>
+      <p class="sec-sub">We move fast. Most clients see their first Claude deployment running within a week of our first call.</p>
+    </div>
+    <div class="steps reveal">
+      <div class="step">
+        <div class="step-n">01</div>
+        <h3>Discovery Call</h3>
+        <p>We map your workflows, pain points, and goals in 30 focused minutes.</p>
+      </div>
+      <div class="step">
+        <div class="step-n">02</div>
+        <h3>Solution Design</h3>
+        <p>We blueprint the exact Claude integration — clear, technical, no fluff.</p>
+      </div>
+      <div class="step">
+        <div class="step-n">03</div>
+        <h3>Build & Test</h3>
+        <p>Rapid development with your team's input at every checkpoint.</p>
+      </div>
+      <div class="step">
+        <div class="step-n">04</div>
+        <h3>Deploy & Train</h3>
+        <p>Go live, onboard your staff, and watch the time savings stack up.</p>
+      </div>
+      <div class="step">
+        <div class="step-n">05</div>
+        <h3>Optimize & Scale</h3>
+        <p>Monthly check-ins, usage analytics, and continuous improvement built in.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi-bg" id="testimonials">
+  <div class="container">
+    <div class="sec-header c reveal">
+      <div class="chip"><span class="chip-dot"></span>Client Stories</div>
+      <h2 class="sec-title">What Our Clients Say</h2>
+      <p class="sec-sub">Real results from real small businesses — not enterprise case studies from companies with 10,000 employees.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="tcard reveal">
+        <div class="tcard-stars">★★★★★</div>
+        <p class="tcard-quote">Rayutek built a Claude agent that handles 80% of our customer support tickets automatically. Our team went from drowning to thriving. The ROI in just the first month paid for the entire project.</p>
+        <div class="tcard-author">
+          <div class="tcard-av">MR</div>
+          <div>
+            <div class="tcard-name">Maria Rodriguez</div>
+            <div class="tcard-role">Owner, Coastal Home Goods · E-commerce</div>
+          </div>
+        </div>
+      </div>
+      <div class="tcard reveal">
+        <div class="tcard-stars">★★★★★</div>
+        <p class="tcard-quote">We were skeptical AI could work in our legal practice. Rayutek proved us wrong. The document review automation saves us 20+ hours a week. Clients love the faster turnaround too.</p>
+        <div class="tcard-author">
+          <div class="tcard-av">JC</div>
+          <div>
+            <div class="tcard-name">James Chen</div>
+            <div class="tcard-role">Managing Partner, Chen & Associates Law</div>
+          </div>
+        </div>
+      </div>
+      <div class="tcard reveal">
+        <div class="tcard-stars">★★★★★</div>
+        <p class="tcard-quote">The AI they built reads inbound vendor emails, categorizes them, drafts responses, and updates our ERP — all without human input. Like hiring a brilliant assistant who never sleeps.</p>
+        <div class="tcard-author">
+          <div class="tcard-av">TK</div>
+          <div>
+            <div class="tcard-name">Tanya Kowalski</div>
+            <div class="tcard-role">COO, Midwest Parts Distribution</div>
+          </div>
+        </div>
+      </div>
+      <div class="tcard reveal">
+        <div class="tcard-stars">★★★★★</div>
+        <p class="tcard-quote">I came in knowing nothing about AI. Rayutek explained everything in plain English, built exactly what I needed, and trained my whole staff. Can't imagine running the clinic without it now.</p>
+        <div class="tcard-author">
+          <div class="tcard-av">DW</div>
+          <div>
+            <div class="tcard-name">Dr. Dana Williams</div>
+            <div class="tcard-role">Founder, Lakeside Wellness Clinic</div>
+          </div>
+        </div>
+      </div>
+      <div class="tcard reveal">
+        <div class="tcard-stars">★★★★★</div>
+        <p class="tcard-quote">Listing descriptions used to take 3 hours each. Now Claude generates a first draft in 90 seconds and our agent tweaks it in 10 minutes. We list twice as many properties now.</p>
+        <div class="tcard-author">
+          <div class="tcard-av">AS</div>
+          <div>
+            <div class="tcard-name">Amanda Sutton</div>
+            <div class="tcard-role">Principal Broker, Sutton Real Estate Group</div>
+          </div>
+        </div>
+      </div>
+      <div class="tcard reveal">
+        <div class="tcard-stars">★★★★★</div>
+        <p class="tcard-quote">Rayutek didn't just build software — they helped us rethink how we operate. The monthly strategy sessions are worth as much as the AI tools themselves. True partners in every sense.</p>
+        <div class="tcard-author">
+          <div class="tcard-av">PH</div>
+          <div>
+            <div class="tcard-name">Paulo Hernandez</div>
+            <div class="tcard-role">CEO, Precision Metal Works Inc.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-bg" id="pricing">
+  <div class="container">
+    <div class="sec-header c reveal">
+      <div class="chip"><span class="chip-dot"></span>Simple Pricing</div>
+      <h2 class="sec-title">Invest in AI, See ROI<br/>Within Weeks</h2>
+      <p class="sec-sub">No long-term lock-in. No surprise fees. Clear value delivered fast.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="pcard reveal">
+        <div class="p-tier">Starter</div>
+        <div class="p-price"><sup>$</sup>1,499<sub>/mo</sub></div>
+        <div class="p-setup">+ $2,500 one-time setup</div>
+        <hr class="p-div"/>
+        <ul class="p-feats">
+          <li><div class="p-check">✓</div>1 Custom Claude Integration</li>
+          <li><div class="p-check">✓</div>Up to 3 automated workflows</li>
+          <li><div class="p-check">✓</div>Standard API access & hosting</li>
+          <li><div class="p-check">✓</div>Onboarding & team training</li>
+          <li><div class="p-check">✓</div>Email support (48h response)</li>
+          <li><div class="p-check">✓</div>Monthly performance report</li>
+        </ul>
+        <a href="#contact" class="p-btn p-btn-o">Get Started →</a>
+      </div>
+      <div class="pcard featured reveal">
+        <div class="p-tier">Growth</div>
+        <div class="p-price"><sup>$</sup>3,499<sub>/mo</sub></div>
+        <div class="p-setup">+ $5,000 one-time setup</div>
+        <hr class="p-div"/>
+        <ul class="p-feats">
+          <li><div class="p-check">✓</div>3 Custom Claude Integrations</li>
+          <li><div class="p-check">✓</div>Unlimited automated workflows</li>
+          <li><div class="p-check">✓</div>Priority API access & scaling</li>
+          <li><div class="p-check">✓</div>CRM & tool integrations</li>
+          <li><div class="p-check">✓</div>Dedicated Slack channel</li>
+          <li><div class="p-check">✓</div>Bi-weekly strategy calls</li>
+          <li><div class="p-check">✓</div>Custom Claude training data</li>
+          <li><div class="p-check">✓</div>Analytics dashboard</li>
+        </ul>
+        <a href="#contact" class="p-btn p-btn-f">Get Started →</a>
+      </div>
+      <div class="pcard reveal">
+        <div class="p-tier">Enterprise</div>
+        <div class="p-price" style="font-size:2rem;letter-spacing:-.02em">Custom</div>
+        <div class="p-setup">Tailored to your scale</div>
+        <hr class="p-div"/>
+        <ul class="p-feats">
+          <li><div class="p-check">✓</div>Unlimited Claude integrations</li>
+          <li><div class="p-check">✓</div>Private cloud deployment</li>
+          <li><div class="p-check">✓</div>SOC 2 & HIPAA compliance</li>
+          <li><div class="p-check">✓</div>Dedicated engineering team</li>
+          <li><div class="p-check">✓</div>99.9% uptime SLA</li>
+          <li><div class="p-check">✓</div>Executive strategy alignment</li>
+          <li><div class="p-check">✓</div>Staff AI transformation program</li>
+          <li><div class="p-check">✓</div>24/7 priority support</li>
+        </ul>
+        <a href="#contact" class="p-btn p-btn-o">Talk to Sales →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <div class="container" style="position:relative;z-index:1">
+    <h2>Ready to Build Your AI Advantage?</h2>
+    <p>Join 50+ small businesses already running on Claude-powered automation.</p>
+    <a href="#contact" class="btn-p">Book Your Free Consult <span class="btn-arrow">→</span></a>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section class="contact-bg" id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <div class="reveal">
+        <div class="chip"><span class="chip-dot"></span>Get in Touch</div>
+        <h2 class="sec-title">Let's Build Your<br/>AI Advantage</h2>
+        <p class="sec-sub">Tell us about your business. We'll respond within 24 hours with a clear plan — no jargon, no pressure, just honest advice about what AI can do for you.</p>
+        <div class="cdetail">
+          <div class="cdetail-icon">📧</div>
+          <div>
+            <div class="cdetail-label">Email</div>
+            <div class="cdetail-val">sales@rayutek.com</div>
+          </div>
+        </div>
+        <div class="cdetail">
+          <div class="cdetail-icon">📞</div>
+          <div>
+            <div class="cdetail-label">Phone</div>
+            <div class="cdetail-val">(248) 961-2334</div>
+          </div>
+        </div>
+        <div class="cdetail">
+          <div class="cdetail-icon">⚡</div>
+          <div>
+            <div class="cdetail-label">Response Time</div>
+            <div class="cdetail-val">Within 24 hours, guaranteed</div>
+          </div>
+        </div>
+        <div class="cdetail">
+          <div class="cdetail-icon">🌎</div>
+          <div>
+            <div class="cdetail-label">Location</div>
+            <div class="cdetail-val">Remote-first · Serving businesses nationwide</div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="cform">
+          <div class="cform-title">Free Consultation Request</div>
+          <div id="fsuccess" class="fsuccess">✅ Message received! We'll be in touch within 24 hours.</div>
+          <form id="cform" onsubmit="handleForm(event)">
+            <div class="frow">
+              <div class="fg">
+                <label class="flabel">First Name</label>
+                <input class="finput" type="text" placeholder="Jane" required/>
+              </div>
+              <div class="fg">
+                <label class="flabel">Last Name</label>
+                <input class="finput" type="text" placeholder="Smith" required/>
+              </div>
+            </div>
+            <div class="fg">
+              <label class="flabel">Business Email</label>
+              <input class="finput" type="email" placeholder="jane@yourbusiness.com" required/>
+            </div>
+            <div class="fg">
+              <label class="flabel">Company Name</label>
+              <input class="finput" type="text" placeholder="Your Business LLC" required/>
+            </div>
+            <div class="fg">
+              <label class="flabel">Industry</label>
+              <select class="fselect finput">
+                <option value="">Select your industry...</option>
+                <option>Healthcare & Medical</option>
+                <option>Legal Services</option>
+                <option>E-Commerce & Retail</option>
+                <option>Real Estate</option>
+                <option>Manufacturing</option>
+                <option>Logistics & Distribution</option>
+                <option>Financial Services</option>
+                <option>Hospitality</option>
+                <option>Education</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="fg">
+              <label class="flabel">What's your biggest workflow challenge?</label>
+              <textarea class="ftextarea" placeholder="Tell us what's taking too much time, causing errors, or holding your team back..."></textarea>
+            </div>
+            <button type="submit" class="fsubmit">Send Message — It's Free →</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="rayutek-logo.png" alt="Rayutek Solutions"/>
+        <p>Empowering small businesses with enterprise-grade Claude AI. Built for the real world, deployed in days.</p>
+        <div class="footer-claude-badge">✦ Claude AI Partner</div>
+      </div>
+      <div>
+        <div class="footer-col-title">Services</div>
+        <ul class="footer-links">
+          <li><a href="#services">Custom AI Agents</a></li>
+          <li><a href="#services">Workflow Automation</a></li>
+          <li><a href="#services">AI Analytics</a></li>
+          <li><a href="#services">Customer Experience AI</a></li>
+          <li><a href="#services">Document Automation</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <ul class="footer-links">
+          <li><a href="#claude">About Rayutek</a></li>
+          <li><a href="#testimonials">Case Studies</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Resources</div>
+        <ul class="footer-links">
+          <li><a href="#">Claude AI Guide for SMBs</a></li>
+          <li><a href="#">ROI Calculator</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Rayutek Solutions. All rights reserved.</span>
+      <span>Certified <a href="https://anthropic.com" target="_blank">Anthropic Claude</a> Integration Partner</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Theme preference -->
+<div class="theme-switcher" role="group" aria-label="Theme preference">
+  <button type="button" data-theme-set="light" aria-label="Light theme" aria-pressed="false" title="Light">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+  </button>
+  <button type="button" data-theme-set="dark" aria-label="Dark theme" aria-pressed="false" title="Dark">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 14.5A8.5 8.5 0 0 1 9.5 3a7 7 0 1 0 11.5 11.5z"/></svg>
+  </button>
+  <button type="button" data-theme-set="system" aria-label="System theme" aria-pressed="false" title="System">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+  </button>
+</div>
+
+
+<script>
+// Nav scroll
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',scrollY>30)
+})
+
+// Mobile menu
+function toggleMob(){
+  const m=document.getElementById('mobMenu')
+  m.style.display=m.style.display==='none'?'flex':'none'
+}
+
+// Scroll reveal
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('up');obs.unobserve(e.target)}})
+},{threshold:.1,rootMargin:'0px 0px -32px 0px'})
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el))
+
+// Form
+function handleForm(e){
+  e.preventDefault()
+  document.getElementById('cform').style.display='none'
+  document.getElementById('fsuccess').style.display='block'
+}
+
+
+// Theme preference (light / dark / system)
+(function(){
+  const KEY='rayutek-theme';
+  const root=document.documentElement;
+  const mq=window.matchMedia('(prefers-color-scheme: dark)');
+
+  function resolve(pref){
+    if(pref==='dark') return 'dark';
+    if(pref==='light') return 'light';
+    return mq.matches?'dark':'light';
+  }
+
+  function apply(pref){
+    const theme=resolve(pref);
+    root.setAttribute('data-theme',theme);
+    root.setAttribute('data-theme-pref',pref);
+    document.querySelectorAll('[data-theme-set]').forEach(btn=>{
+      btn.setAttribute('aria-pressed',btn.getAttribute('data-theme-set')===pref?'true':'false');
+    });
+    const meta=document.querySelector('meta[name="theme-color"]');
+    if(meta) meta.setAttribute('content',theme==='dark'?'#111518':'#ffffff');
+  }
+
+  function setPref(pref){
+    localStorage.setItem(KEY,pref);
+    apply(pref);
+  }
+
+  apply(localStorage.getItem(KEY)||'system');
+
+  document.querySelectorAll('[data-theme-set]').forEach(btn=>{
+    btn.addEventListener('click',()=>setPref(btn.getAttribute('data-theme-set')));
+  });
+
+  mq.addEventListener('change',()=>{
+    if((localStorage.getItem(KEY)||'system')==='system') apply('system');
+  });
+})();
+
+// Close mobile on anchor click
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',()=>{
+    document.getElementById('mobMenu').style.display='none'
+  })
+})
+</script>
+</body>
+</html>
