@@ -1415,7 +1415,8 @@ footer{
         <div class="cform">
           <div class="cform-title">Free Consultation Request</div>
           <div id="fsuccess" class="fsuccess">✅ Message received! We'll be in touch within 24 hours.</div>
-          <form id="cform" onsubmit="handleForm(event)">
+          <form id="cform" action="https://formsubmit.cloud/f/12e3f5f7-0944-4140-a072-3d9eef232e2a/" method="POST" onsubmit="handleForm(event)">
+            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true"/>
             <div id="ferror" class="ferror" role="alert"></div>
             <div class="frow">
               <div class="fg">
@@ -1541,7 +1542,8 @@ const obs=new IntersectionObserver(entries=>{
 },{threshold:.1,rootMargin:'0px 0px -32px 0px'})
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el))
 
-// Form — delivers to sales@rayutek.com via FormSubmit (https://formsubmit.co)
+// Form — https://formsubmit.cloud/f/12e3f5f7-0944-4140-a072-3d9eef232e2a/
+const FORM_SUBMIT_URL='https://formsubmit.cloud/f/12e3f5f7-0944-4140-a072-3d9eef232e2a/'
 const CONTACT_EMAIL='sales@rayutek.com'
 
 async function handleForm(e){
@@ -1549,13 +1551,6 @@ async function handleForm(e){
   const form=e.target
   const btn=form.querySelector('.fsubmit')
   const errEl=document.getElementById('ferror')
-  const data=new FormData(form)
-  const firstName=(data.get('firstName')||'').trim()
-  const lastName=(data.get('lastName')||'').trim()
-  const email=(data.get('email')||'').trim()
-  const company=(data.get('company')||'').trim()
-  const industry=(data.get('industry')||'').trim()
-  const challenge=(data.get('challenge')||'').trim()
 
   btn.disabled=true
   const prevLabel=btn.textContent
@@ -1564,24 +1559,20 @@ async function handleForm(e){
   errEl.textContent=''
 
   try{
-    const res=await fetch('https://formsubmit.co/ajax/'+encodeURIComponent(CONTACT_EMAIL),{
+    const res=await fetch(FORM_SUBMIT_URL,{
       method:'POST',
-      headers:{'Content-Type':'application/json','Accept':'application/json'},
-      body:JSON.stringify({
-        _subject:'Consultation request: '+firstName+' '+lastName+' — '+company,
-        _replyto:email,
-        _template:'table',
-        _captcha:'false',
-        'First Name':firstName,
-        'Last Name':lastName,
-        'Business Email':email,
-        'Company Name':company,
-        'Industry':industry||'(not selected)',
-        'Workflow Challenge':challenge||'(none provided)',
-      }),
+      headers:{Accept:'application/json'},
+      body:new FormData(form),
     })
-    const body=await res.json()
-    if(!res.ok||!body.success) throw new Error(body.message||'Unable to send your message.')
+    let ok=res.ok
+    const ct=res.headers.get('content-type')||''
+    if(ct.includes('application/json')){
+      const body=await res.json()
+      if(body.success===false) ok=false
+      if(!ok) throw new Error(body.message||body.error||'Unable to send your message.')
+    }else if(!ok){
+      throw new Error('Unable to send your message.')
+    }
     form.style.display='none'
     document.getElementById('fsuccess').style.display='block'
   }catch(err){
