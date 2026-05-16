@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
-<title>Rayutek Solutions – Claude AI Partner for Small Business</title>
+<title>Rayutek Solutions – Claude AI for Small Business</title>
 <meta name="theme-color" content="#ffffff"/>
 <meta name="color-scheme" content="light dark"/>
 <script>
@@ -209,7 +209,7 @@ body.menu-open{overflow:hidden;position:fixed;width:100%}
   max-width:1200px;margin:0 auto;width:100%;
 }
 .hero-badge{
-  display:inline-flex;align-items:center;gap:8px;
+  display:none;align-items:center;gap:8px;
   background:var(--blue-lt);border:1px solid var(--blue-mid);
   border-radius:var(--r-pill);padding:6px 16px 6px 8px;margin-bottom:28px;
 }
@@ -418,7 +418,8 @@ section{padding:96px 6%}
   max-width:1200px;margin:0 auto;
 }
 .partner-chip{
-  display:inline-flex;align-items:center;gap:8px;
+  display:none;
+  align-items:center;gap:8px;
   background:rgba(27,159,216,.15);border:1px solid rgba(27,159,216,.3);
   border-radius:var(--r-pill);padding:6px 16px;margin-bottom:24px;
   font-family:var(--font-head);font-size:.72rem;font-weight:700;
@@ -678,7 +679,7 @@ footer{
 .footer-brand img{height:42px;width:auto;margin-bottom:14px;filter:var(--logo-filter)}
 .footer-brand p{font-size:.85rem;color:rgba(255,255,255,.45);line-height:1.7;max-width:240px;margin-bottom:20px}
 .footer-claude-badge{
-  display:inline-flex;align-items:center;gap:6px;
+  display:none;align-items:center;gap:6px;
   background:rgba(27,159,216,.15);border:1px solid rgba(27,159,216,.25);
   border-radius:var(--r-pill);padding:6px 14px;
   font-family:var(--font-head);font-size:.7rem;font-weight:700;
@@ -958,7 +959,6 @@ footer{
   </a>
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
-    <li><a href="#claude">Claude Partner</a></li>
     <li><a href="#process">Process</a></li>
     <li><a href="#testimonials">Clients</a></li>
     <li><a href="#pricing">Pricing</a></li>
@@ -972,7 +972,6 @@ footer{
 <!-- MOBILE MENU -->
 <div class="mob-menu" id="mobMenu" role="navigation" aria-label="Mobile menu">
   <a href="#services" onclick="toggleMob()">Services</a>
-  <a href="#claude" onclick="toggleMob()">Claude Partner</a>
   <a href="#process" onclick="toggleMob()">Process</a>
   <a href="#testimonials" onclick="toggleMob()">Clients</a>
   <a href="#pricing" onclick="toggleMob()">Pricing</a>
@@ -1292,12 +1291,12 @@ footer{
       <div class="partner-chip">✦ Official Anthropic Claude Partner</div>
       <div class="chip" style="background:rgba(27,159,216,.1);border-color:rgba(27,159,216,.2)">Why Claude</div>
       <h2 class="sec-title" style="color:#fff;margin-top:10px">The Most Capable AI —<br/>Implemented by Experts</h2>
-      <p class="sec-sub">Claude by Anthropic is the most nuanced, context-aware AI available. As a certified partner, we deliver integrations no generic AI agency can match.</p>
+      <p class="sec-sub">Claude by Anthropic is the most nuanced, context-aware AI available. We deliver integrations no generic AI agency can match.</p>
       <ul class="partner-list">
         <li><div class="partner-check">✓</div>Direct API access and priority model updates from Anthropic</li>
         <li><div class="partner-check">✓</div>Constitutional AI ensures safe, on-brand outputs every time</li>
         <li><div class="partner-check">✓</div>200K+ token context — handles massive documents and datasets</li>
-        <li><div class="partner-check">✓</div>Certified implementation across dozens of industries</li>
+        <li><div class="partner-check">✓</div>Expert implementation across dozens of industries</li>
         <li><div class="partner-check">✓</div>Ongoing model improvements automatically benefit your deployment</li>
       </ul>
     </div>
@@ -1599,7 +1598,7 @@ footer{
       <div>
         <div class="footer-col-title">Company</div>
         <ul class="footer-links">
-          <li><a href="#claude">About Rayutek</a></li>
+          <li><a href="#services">About Rayutek</a></li>
           <li><a href="#testimonials">Case Studies</a></li>
           <li><a href="#pricing">Pricing</a></li>
           <li><a href="#contact">Contact</a></li>
@@ -1618,7 +1617,6 @@ footer{
     </div>
     <div class="footer-bottom">
       <span>© 2025 Rayutek Solutions. All rights reserved.</span>
-      <span>Certified <a href="https://anthropic.com" target="_blank">Anthropic Claude</a> Integration Partner</span>
     </div>
   </div>
 </footer>
