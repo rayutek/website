@@ -581,21 +581,28 @@ section{padding:96px 6%}
 .contact-bg{background:var(--bg)}
 .contact-inner{
   max-width:1200px;margin:0 auto;
-  display:grid;grid-template-columns:1fr 1.1fr;gap:72px;align-items:start;
+  display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:center;
 }
-.contact-info .sec-sub{margin-bottom:36px}
+.contact-info .chip{margin-bottom:12px}
+.contact-info .sec-title{
+  font-size:clamp(1.35rem,2.2vw,1.85rem);margin-bottom:10px;
+}
+.contact-info .sec-sub{
+  margin-bottom:20px;font-size:.88rem;line-height:1.65;max-width:420px;
+}
+.cdetail-list{
+  display:grid;grid-template-columns:1fr 1fr;gap:10px;
+}
 .cdetail{
-  display:flex;align-items:center;gap:14px;margin-bottom:16px;
-  padding:16px;background:var(--bg2);border:1px solid var(--border);
-  border-radius:var(--r-md);
+  display:flex;align-items:center;gap:10px;margin-bottom:0;
+  padding:0;background:transparent;border:none;
 }
 .cdetail-icon{
-  width:44px;height:44px;border-radius:var(--r-sm);
-  background:var(--blue-lt);border:1px solid var(--blue-mid);
-  display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;
+  width:32px;height:32px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:1rem;line-height:1;
 }
-.cdetail-label{font-family:var(--font-head);font-size:.75rem;font-weight:700;color:var(--blue);letter-spacing:.04em;text-transform:uppercase;margin-bottom:3px}
-.cdetail-val{font-size:.9rem;color:var(--text2);font-weight:500}
+.cdetail-label{font-family:var(--font-head);font-size:.65rem;font-weight:700;color:var(--blue);letter-spacing:.04em;text-transform:uppercase;margin-bottom:2px}
+.cdetail-val{font-size:.8rem;color:var(--text2);font-weight:500;line-height:1.35}
 .cform{
   background:var(--card);border:1.5px solid var(--border);border-radius:var(--r-xl);
   padding:44px;box-shadow:var(--shadow-lg);
@@ -907,7 +914,7 @@ footer{
   .frow{grid-template-columns:1fr}
   .finput,.ftextarea,.fselect{font-size:16px}
   .cform{padding:28px 20px;border-radius:var(--r-lg)}
-  .cdetail{padding:14px}
+  .cdetail-list{grid-template-columns:1fr}
   .footer-top{grid-template-columns:1fr;gap:28px}
   .footer-bottom{flex-direction:column;text-align:center}
   .footer-brand p{max-width:none}
@@ -1511,36 +1518,38 @@ footer{
 <section class="contact-bg" id="contact">
   <div class="container">
     <div class="contact-inner">
-      <div class="reveal">
+      <div class="reveal contact-info">
         <div class="chip"><span class="chip-dot"></span>Get in Touch</div>
         <h2 class="sec-title">Let's Build Your<br/>AI Advantage</h2>
         <p class="sec-sub">Tell us about your business. We'll respond within 24 hours with a clear plan — no jargon, no pressure, just honest advice about what AI can do for you.</p>
-        <div class="cdetail">
-          <div class="cdetail-icon">📧</div>
-          <div>
-            <div class="cdetail-label">Email</div>
-            <div class="cdetail-val">sales@rayutek.com</div>
+        <div class="cdetail-list">
+          <div class="cdetail">
+            <div class="cdetail-icon">📧</div>
+            <div>
+              <div class="cdetail-label">Email</div>
+              <div class="cdetail-val">sales@rayutek.com</div>
+            </div>
           </div>
-        </div>
-        <div class="cdetail">
-          <div class="cdetail-icon">📞</div>
-          <div>
-            <div class="cdetail-label">Phone</div>
-            <div class="cdetail-val">(248) 961-2334</div>
+          <div class="cdetail">
+            <div class="cdetail-icon">⚡</div>
+            <div>
+              <div class="cdetail-label">Response Time</div>
+              <div class="cdetail-val">Within 24 hours</div>
+            </div>
           </div>
-        </div>
-        <div class="cdetail">
-          <div class="cdetail-icon">⚡</div>
-          <div>
-            <div class="cdetail-label">Response Time</div>
-            <div class="cdetail-val">Within 24 hours, guaranteed</div>
+          <div class="cdetail">
+            <div class="cdetail-icon">📞</div>
+            <div>
+              <div class="cdetail-label">Phone</div>
+              <div class="cdetail-val">(248) 961-2334</div>
+            </div>
           </div>
-        </div>
-        <div class="cdetail">
-          <div class="cdetail-icon">🌎</div>
-          <div>
-            <div class="cdetail-label">Location</div>
-            <div class="cdetail-val">Remote-first · Serving businesses nationwide</div>
+          <div class="cdetail">
+            <div class="cdetail-icon">🌎</div>
+            <div>
+              <div class="cdetail-label">Location</div>
+              <div class="cdetail-val">Remote-first · Nationwide</div>
+            </div>
           </div>
         </div>
       </div>
@@ -1551,43 +1560,14 @@ footer{
           <form id="cform" action="https://formsubmit.cloud/f/12e3f5f7-0944-4140-a072-3d9eef232e2a/" method="POST" onsubmit="handleForm(event)">
             <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true"/>
             <div id="ferror" class="ferror" role="alert"></div>
-            <div class="frow">
-              <div class="fg">
-                <label class="flabel" for="firstName">First Name</label>
-                <input id="firstName" class="finput" type="text" name="firstName" placeholder="Jane" required/>
-              </div>
-              <div class="fg">
-                <label class="flabel" for="lastName">Last Name</label>
-                <input id="lastName" class="finput" type="text" name="lastName" placeholder="Smith" required/>
-              </div>
+            <div class="fg">
+              <input id="name" class="finput" type="text" name="name" placeholder="Name" required/>
             </div>
             <div class="fg">
-              <label class="flabel" for="email">Business Email</label>
-              <input id="email" class="finput" type="email" name="email" placeholder="jane@yourbusiness.com" required/>
+              <input id="email" class="finput" type="email" name="email" placeholder="Email" required/>
             </div>
             <div class="fg">
-              <label class="flabel" for="company">Company Name</label>
-              <input id="company" class="finput" type="text" name="company" placeholder="Your Business LLC" required/>
-            </div>
-            <div class="fg">
-              <label class="flabel" for="industry">Industry</label>
-              <select id="industry" class="fselect finput" name="industry">
-                <option value="">Select your industry...</option>
-                <option>Healthcare & Medical</option>
-                <option>Legal Services</option>
-                <option>E-Commerce & Retail</option>
-                <option>Real Estate</option>
-                <option>Manufacturing</option>
-                <option>Logistics & Distribution</option>
-                <option>Financial Services</option>
-                <option>Hospitality</option>
-                <option>Education</option>
-                <option>Other</option>
-              </select>
-            </div>
-            <div class="fg">
-              <label class="flabel" for="challenge">What's your biggest workflow challenge?</label>
-              <textarea id="challenge" class="ftextarea" name="challenge" placeholder="Tell us what's taking too much time, causing errors, or holding your team back..."></textarea>
+              <textarea id="message" class="ftextarea" name="message" placeholder="Message" required></textarea>
             </div>
             <button type="submit" class="fsubmit">Send Message — It's Free →</button>
           </form>
