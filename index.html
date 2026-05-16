@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
 <title>Rayutek Solutions – Claude AI Partner for Small Business</title>
 <meta name="theme-color" content="#ffffff"/>
 <meta name="color-scheme" content="light dark"/>
@@ -75,10 +75,16 @@
   color-scheme:light;
 }
 
-html{scroll-behavior:smooth}
+html{
+  scroll-behavior:smooth;
+  overflow-x:hidden;
+  width:100%;
+  -webkit-text-size-adjust:100%;
+}
 body{
   font-family:var(--font-body);background:var(--bg);color:var(--text);
   overflow-x:hidden;line-height:1.6;
+  width:100%;max-width:100vw;
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
   text-rendering:optimizeLegibility;
@@ -124,8 +130,36 @@ nav.scrolled{
   box-shadow:0 2px 12px rgba(27,159,216,.35);
 }
 .nav-cta:hover{background:var(--blue2);transform:translateY(-1px);box-shadow:0 4px 20px rgba(27,159,216,.45)}
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px}
-.hamburger span{display:block;width:20px;height:2px;background:var(--text);border-radius:2px;transition:.3s}
+.hamburger{
+  display:none;flex-direction:column;gap:5px;cursor:pointer;
+  padding:10px;margin-right:-6px;border:none;background:transparent;
+  min-width:44px;min-height:44px;align-items:center;justify-content:center;
+  -webkit-tap-highlight-color:transparent;
+}
+.hamburger span{display:block;width:22px;height:2px;background:var(--hamburger-bg);border-radius:2px;transition:.3s}
+body.menu-open{overflow:hidden;position:fixed;width:100%}
+
+/* Mobile nav drawer — hidden by default; never use display:flex!important (breaks iOS) */
+.mob-menu{
+  display:none;flex-direction:column;
+  position:fixed;top:70px;left:0;right:0;bottom:0;
+  background:var(--bg);z-index:199;
+  padding:20px 6% 28px;
+  gap:4px;overflow-y:auto;-webkit-overflow-scrolling:touch;
+}
+.mob-menu.is-open{display:flex}
+.mob-menu a{
+  font-family:var(--font-head);font-size:1rem;font-weight:600;color:var(--text);
+  text-decoration:none;padding:16px;border-radius:var(--r-md);
+  border-bottom:1px solid var(--border);transition:color .2s,background .2s;
+  min-height:48px;display:flex;align-items:center;
+}
+.mob-menu a:hover,.mob-menu a:active{color:var(--blue);background:var(--blue-lt)}
+.mob-menu .nav-cta{
+  margin-top:12px;display:flex;align-items:center;justify-content:center;
+  padding:16px;border-radius:var(--r-pill);background:var(--blue);color:#fff;
+  font-weight:700;border:none;
+}
 
 /* ─── HERO ─── */
 .hero{
@@ -761,7 +795,10 @@ footer{
 .theme-switcher button svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
 .theme-switcher button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
 @media(max-width:640px){
-  .theme-switcher{bottom:16px;right:16px}
+  .theme-switcher{
+    bottom:max(16px,env(safe-area-inset-bottom));
+    right:max(16px,env(safe-area-inset-right));
+  }
   .theme-switcher button{width:34px;height:34px}
 }
 
@@ -772,40 +809,136 @@ footer{
 /* ─── MOBILE ─── */
 @media(max-width:1024px){
   .hero-inner{grid-template-columns:1fr;gap:48px}
-  .partner-inner,.contact-inner{grid-template-columns:1fr;gap:40px}
+  .partner-inner,.contact-inner{grid-template-columns:1fr;gap:48px}
   .services-grid,.testi-grid,.pricing-grid{grid-template-columns:repeat(2,1fr)}
   .steps{grid-template-columns:repeat(3,1fr)}
   .steps::before{display:none}
   .footer-top{grid-template-columns:1fr 1fr;gap:32px}
 }
+/* Tablet / large phone landscape: avoid cramped 3-col process row */
+@media(max-width:900px){
+  #process .steps{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+  #process .step{padding:0 10px;min-width:0}
+  #process .step h3{font-size:.82rem}
+  #process .step p{font-size:.78rem}
+}
+@media(max-width:768px){
+  section{padding:72px 5%}
+  nav{padding:0 5%;height:64px;padding-left:max(5%,env(safe-area-inset-left));padding-right:max(5%,env(safe-area-inset-right))}
+  .hero{
+    min-height:auto;padding:88px max(5%,env(safe-area-inset-right)) 64px max(5%,env(safe-area-inset-left));
+  }
+  .hero-blob1{width:260px;height:260px;right:-100px;top:-50px}
+  .hero-blob2{width:200px;height:200px;left:-70px;bottom:-50px}
+  .trust{padding:20px 5%}
+  .cta-band{padding:56px 5%}
+  footer{padding:48px 5% 28px}
+  .sec-header{margin-bottom:40px}
+  .terminal-body{font-size:.75rem;padding:18px 14px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .mob-menu{
+    top:64px;
+    padding:20px max(5%,env(safe-area-inset-right)) max(28px,env(safe-area-inset-bottom)) max(5%,env(safe-area-inset-left));
+  }
+  .hero-blob1,.hero-blob2,.hero-dots{display:none}
+  .partner-bg{overflow:hidden}
+  .partner-bg::before,.partner-bg::after{display:none}
+  .hero-diagram{max-width:100%}
+  .hero-inner,.hero-copy,.hero-card,.partner-inner>*,
+  .contact-inner>*,.services-grid>*,.testi-grid>*,.pricing-grid>*,
+  .steps,.container{min-width:0;max-width:100%}
+  .reveal{opacity:1;transform:none}
+}
 @media(max-width:640px){
+  section{padding:64px 4.5%}
   .hero h1 .h1-nowrap{white-space:normal}
   .hero-card-label-text em{white-space:normal}
   .nav-links,.nav-cta{display:none}
   .hamburger{display:flex}
+  .nav-logo img{height:32px}
   .hero-inner,.services-grid,.testi-grid,.pricing-grid{grid-template-columns:1fr}
-  .steps{grid-template-columns:1fr 1fr}
-  .hero-stats{flex-direction:column;gap:16px}
+  .hero-inner{gap:36px}
+  .hero h1{font-size:clamp(1.65rem,7.5vw,2.15rem)}
+  .hero-sub{font-size:.95rem;margin-bottom:28px;max-width:none}
+  .hero-badge{margin-bottom:20px}
+  .hero-actions{flex-direction:column;width:100%;margin-bottom:36px;gap:10px}
+  .hero-actions .btn-p,.hero-actions .btn-s{width:100%;justify-content:center;padding:15px 24px}
+  .hero-stats{
+    display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:10px 8px;width:100%;max-width:100%;padding-top:24px;
+  }
+  .hero-stats>div{
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;min-width:0;padding:12px 6px;
+    background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-sm);
+  }
+  .hero-stat-n{font-size:clamp(1.2rem,4.5vw,1.55rem)}
+  .hero-stat-l{
+    font-size:clamp(.6rem,2.8vw,.7rem);line-height:1.35;margin-top:6px;
+    max-width:100%;overflow-wrap:break-word;
+  }
+  .hero-card{padding:24px 18px;border-radius:var(--r-lg)}
+  .hero-card-label{font-size:.68rem}
+  .hero-kpi-row{gap:8px}
+  .hero-kpi{padding:12px 8px}
+  .hero-kpi-n{font-size:1.2rem}
+  .hero-kpi-l{font-size:.65rem}
+  #process .sec-header.c .sec-sub{max-width:100%;padding:0 4px}
+  #process .steps{grid-template-columns:1fr;width:100%;max-width:100%;gap:20px;padding:0}
+  #process .step{
+    text-align:left;display:grid;
+    grid-template-columns:48px minmax(0,1fr);
+    grid-template-rows:auto auto;
+    gap:6px 14px;align-items:start;padding:16px;
+    background:var(--card);border:1px solid var(--border);
+    border-radius:var(--r-md);box-shadow:var(--shadow-sm);
+    min-width:0;overflow-wrap:break-word;word-wrap:break-word;
+  }
+  #process .step-n{
+    grid-column:1;grid-row:1/span 2;
+    width:48px;height:48px;font-size:.9rem;margin:0;align-self:start;
+  }
+  #process .step h3{grid-column:2;grid-row:1;margin-bottom:0;font-size:.88rem}
+  #process .step p{grid-column:2;grid-row:2;font-size:.82rem;line-height:1.6}
+  #process .step h3,#process .step p{text-align:left;min-width:0}
+  .srv{padding:28px 22px}
+  .tcard{padding:26px 22px}
+  .pcard{padding:32px 24px}
+  .pcard.featured{transform:none;margin-top:8px}
   .frow{grid-template-columns:1fr}
-  .footer-top{grid-template-columns:1fr}
+  .finput,.ftextarea,.fselect{font-size:16px}
+  .cform{padding:28px 20px;border-radius:var(--r-lg)}
+  .cdetail{padding:14px}
+  .footer-top{grid-template-columns:1fr;gap:28px}
   .footer-bottom{flex-direction:column;text-align:center}
-  .pcard.featured{transform:none}
-  .mob-menu{
-    display:flex!important;flex-direction:column;
-    position:fixed;top:70px;left:0;right:0;bottom:0;
-    background:var(--bg);z-index:199;padding:28px 6%;gap:6px;overflow-y:auto;
-  }
-  .mob-menu a{
-    font-family:var(--font-head);font-size:1rem;font-weight:600;color:var(--text);
-    text-decoration:none;padding:14px 16px;border-radius:var(--r-md);
-    border-bottom:1px solid var(--border);transition:color .2s,background .2s;
-  }
-  .mob-menu a:hover{color:var(--blue);background:var(--blue-lt)}
-  .mob-menu .nav-cta{
-    margin-top:12px;display:block;text-align:center;
-    padding:14px;border-radius:var(--r-pill);background:var(--blue);color:#fff;
-    font-weight:700;
-  }
+  .footer-brand p{max-width:none}
+  .trust-inner{flex-direction:column;gap:14px}
+  .trust-sep{display:none}
+  .trust-lbl{white-space:normal;text-align:center}
+  .trust-tags{justify-content:center}
+  .sec-title{font-size:clamp(1.45rem,6.5vw,1.9rem)}
+  .sec-sub{font-size:.95rem}
+  .p-price{font-size:2.35rem}
+  .cta-band{padding:48px 4.5%}
+  .cta-band .btn-p{display:inline-flex;width:100%;max-width:320px;justify-content:center}
+}
+@media(max-width:380px){
+  .hero-stats{gap:8px}
+  .hero-stats>div{padding:10px 4px}
+  .hero-stat-n{font-size:1.15rem}
+  .hero-stat-l{font-size:.58rem;line-height:1.3}
+  .hero-kpi-row{grid-template-columns:1fr}
+  .hero-kpi{display:flex;align-items:center;justify-content:space-between;text-align:left;gap:12px}
+  .hero-kpi-n{font-size:1.35rem}
+  #process .step{grid-template-columns:44px minmax(0,1fr);gap:6px 12px;padding:14px}
+  #process .step-n{width:44px;height:44px;font-size:.85rem}
+}
+@media(min-width:641px){
+  .mob-menu,.mob-menu.is-open{display:none}
+  body.menu-open{overflow:auto;position:static;width:auto}
+}
+@media(prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .hero-diagram *{animation:none!important}
 }
 </style>
 </head>
@@ -824,13 +957,13 @@ footer{
     <li><a href="#pricing">Pricing</a></li>
   </ul>
   <a href="#contact" class="nav-cta">Get Started →</a>
-  <div class="hamburger" id="ham" onclick="toggleMob()">
+  <button type="button" class="hamburger" id="ham" onclick="toggleMob()" aria-label="Open menu" aria-expanded="false" aria-controls="mobMenu">
     <span></span><span></span><span></span>
-  </div>
+  </button>
 </nav>
 
 <!-- MOBILE MENU -->
-<div class="mob-menu" id="mobMenu" style="display:none">
+<div class="mob-menu" id="mobMenu" role="navigation" aria-label="Mobile menu">
   <a href="#services" onclick="toggleMob()">Services</a>
   <a href="#claude" onclick="toggleMob()">Claude Partner</a>
   <a href="#process" onclick="toggleMob()">Process</a>
@@ -1533,14 +1666,30 @@ window.addEventListener('scroll',()=>{
 // Mobile menu
 function toggleMob(){
   const m=document.getElementById('mobMenu')
-  m.style.display=m.style.display==='none'?'flex':'none'
+  const ham=document.getElementById('ham')
+  const open=!m.classList.contains('is-open')
+  m.classList.toggle('is-open',open)
+  document.body.classList.toggle('menu-open',open)
+  if(ham){
+    ham.setAttribute('aria-expanded',open?'true':'false')
+    ham.setAttribute('aria-label',open?'Close menu':'Open menu')
+  }
 }
 
-// Scroll reveal
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('up');obs.unobserve(e.target)}})
-},{threshold:.1,rootMargin:'0px 0px -32px 0px'})
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el))
+// Scroll reveal (desktop only; mobile shows content immediately)
+;(function(){
+  const els=document.querySelectorAll('.reveal')
+  const mobile=window.matchMedia('(max-width:768px)').matches
+  if(mobile||!('IntersectionObserver'in window)){
+    els.forEach(el=>el.classList.add('up'))
+    return
+  }
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('up');obs.unobserve(e.target)}})
+  },{threshold:.08,rootMargin:'0px 0px -24px 0px'})
+  els.forEach(el=>obs.observe(el))
+  setTimeout(()=>els.forEach(el=>el.classList.add('up')),2000)
+})()
 
 // Form — https://formsubmit.cloud/f/12e3f5f7-0944-4140-a072-3d9eef232e2a/
 const FORM_SUBMIT_URL='https://formsubmit.cloud/f/12e3f5f7-0944-4140-a072-3d9eef232e2a/'
@@ -1623,10 +1772,16 @@ async function handleForm(e){
   });
 })();
 
-// Close mobile on anchor click
+// Close mobile menu on anchor click
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
   a.addEventListener('click',()=>{
-    document.getElementById('mobMenu').style.display='none'
+    const m=document.getElementById('mobMenu')
+    if(m&&m.classList.contains('is-open')){
+      m.classList.remove('is-open')
+      document.body.classList.remove('menu-open')
+      const ham=document.getElementById('ham')
+      if(ham){ham.setAttribute('aria-expanded','false');ham.setAttribute('aria-label','Open menu')}
+    }
   })
 })
 </script>
