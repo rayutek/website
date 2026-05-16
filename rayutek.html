@@ -601,6 +601,12 @@ section{padding:96px 6%}
   display:none;text-align:center;padding:32px;
   font-family:var(--font-head);font-weight:700;color:var(--blue);font-size:1rem;
 }
+.ferror{
+  display:none;margin-bottom:18px;padding:12px 16px;border-radius:var(--r-md);
+  background:rgba(220,38,38,.08);border:1.5px solid rgba(220,38,38,.25);
+  font-size:.88rem;color:#b91c1c;line-height:1.5;
+}
+.fsubmit:disabled{opacity:.7;cursor:not-allowed;transform:none;box-shadow:none}
 
 /* ─── CTA BAND ─── */
 .cta-band{
@@ -1410,27 +1416,28 @@ footer{
           <div class="cform-title">Free Consultation Request</div>
           <div id="fsuccess" class="fsuccess">✅ Message received! We'll be in touch within 24 hours.</div>
           <form id="cform" onsubmit="handleForm(event)">
+            <div id="ferror" class="ferror" role="alert"></div>
             <div class="frow">
               <div class="fg">
-                <label class="flabel">First Name</label>
-                <input class="finput" type="text" placeholder="Jane" required/>
+                <label class="flabel" for="firstName">First Name</label>
+                <input id="firstName" class="finput" type="text" name="firstName" placeholder="Jane" required/>
               </div>
               <div class="fg">
-                <label class="flabel">Last Name</label>
-                <input class="finput" type="text" placeholder="Smith" required/>
+                <label class="flabel" for="lastName">Last Name</label>
+                <input id="lastName" class="finput" type="text" name="lastName" placeholder="Smith" required/>
               </div>
             </div>
             <div class="fg">
-              <label class="flabel">Business Email</label>
-              <input class="finput" type="email" placeholder="jane@yourbusiness.com" required/>
+              <label class="flabel" for="email">Business Email</label>
+              <input id="email" class="finput" type="email" name="email" placeholder="jane@yourbusiness.com" required/>
             </div>
             <div class="fg">
-              <label class="flabel">Company Name</label>
-              <input class="finput" type="text" placeholder="Your Business LLC" required/>
+              <label class="flabel" for="company">Company Name</label>
+              <input id="company" class="finput" type="text" name="company" placeholder="Your Business LLC" required/>
             </div>
             <div class="fg">
-              <label class="flabel">Industry</label>
-              <select class="fselect finput">
+              <label class="flabel" for="industry">Industry</label>
+              <select id="industry" class="fselect finput" name="industry">
                 <option value="">Select your industry...</option>
                 <option>Healthcare & Medical</option>
                 <option>Legal Services</option>
@@ -1445,8 +1452,8 @@ footer{
               </select>
             </div>
             <div class="fg">
-              <label class="flabel">What's your biggest workflow challenge?</label>
-              <textarea class="ftextarea" placeholder="Tell us what's taking too much time, causing errors, or holding your team back..."></textarea>
+              <label class="flabel" for="challenge">What's your biggest workflow challenge?</label>
+              <textarea id="challenge" class="ftextarea" name="challenge" placeholder="Tell us what's taking too much time, causing errors, or holding your team back..."></textarea>
             </div>
             <button type="submit" class="fsubmit">Send Message — It's Free →</button>
           </form>
@@ -1534,11 +1541,55 @@ const obs=new IntersectionObserver(entries=>{
 },{threshold:.1,rootMargin:'0px 0px -32px 0px'})
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el))
 
-// Form
-function handleForm(e){
+// Form — delivers to sales@rayutek.com via FormSubmit (https://formsubmit.co)
+const CONTACT_EMAIL='sales@rayutek.com'
+
+async function handleForm(e){
   e.preventDefault()
-  document.getElementById('cform').style.display='none'
-  document.getElementById('fsuccess').style.display='block'
+  const form=e.target
+  const btn=form.querySelector('.fsubmit')
+  const errEl=document.getElementById('ferror')
+  const data=new FormData(form)
+  const firstName=(data.get('firstName')||'').trim()
+  const lastName=(data.get('lastName')||'').trim()
+  const email=(data.get('email')||'').trim()
+  const company=(data.get('company')||'').trim()
+  const industry=(data.get('industry')||'').trim()
+  const challenge=(data.get('challenge')||'').trim()
+
+  btn.disabled=true
+  const prevLabel=btn.textContent
+  btn.textContent='Sending…'
+  errEl.style.display='none'
+  errEl.textContent=''
+
+  try{
+    const res=await fetch('https://formsubmit.co/ajax/'+encodeURIComponent(CONTACT_EMAIL),{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({
+        _subject:'Consultation request: '+firstName+' '+lastName+' — '+company,
+        _replyto:email,
+        _template:'table',
+        _captcha:'false',
+        'First Name':firstName,
+        'Last Name':lastName,
+        'Business Email':email,
+        'Company Name':company,
+        'Industry':industry||'(not selected)',
+        'Workflow Challenge':challenge||'(none provided)',
+      }),
+    })
+    const body=await res.json()
+    if(!res.ok||!body.success) throw new Error(body.message||'Unable to send your message.')
+    form.style.display='none'
+    document.getElementById('fsuccess').style.display='block'
+  }catch(err){
+    errEl.textContent=err.message||'Something went wrong. Please email us at '+CONTACT_EMAIL+'.'
+    errEl.style.display='block'
+    btn.disabled=false
+    btn.textContent=prevLabel
+  }
 }
 
 
